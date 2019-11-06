@@ -29,19 +29,27 @@ public class SubmissionController implements ISubmissoes {
     @Override
     public List<Submissao> consultarAutor(String autor) {
         List<Submissao> submissoesAutor = new ArrayList<>();
+
         for (Submissao submissao : listaSubmi) {
-            if (submissao.getAutor().equals(autor)) {
+            String autores[] = submissao.getAutoresSubmissao();
+            for (int i = 0; i < autores.length; i++) {
+                autores[i].equals(autor);
                 submissoesAutor.add(submissao);
-            }
+            } 
         }
+
         return submissoesAutor;
     }
 
     @Override
     public boolean excluir(String titulo) {
         for (Submissao submissao : listaSubmi) {
-            return listaSubmi.remove(summissao.getTituloSubmissao().equals(titulo));
+            if (submissao.getTituloSubmissao().equals(titulo)) {
+                listaSubmi.remove(submissao);
+                return true;
+            }
         }
+        return false;
     }
 
     
