@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Submissao",
+            "request": "launch",
+            "mainClass": "classes.Submissao",
+            "projectName": "Work3"
+        }
+    ]
+}
