@@ -8,7 +8,7 @@ import interfaces.ISubmissoes;
 /**
  * SubmissionController
  */
-public class ControleSubmissao implements ISubmissoes {
+public class SubmissionController implements ISubmissoes {
     private ArrayList<Submissao> listaSubmi = new ArrayList<>();
 
     @Override
