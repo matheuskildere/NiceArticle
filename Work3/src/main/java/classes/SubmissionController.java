@@ -13,33 +13,35 @@ public class SubmissionController implements ISubmissoes {
 
     @Override
     public boolean incluir(Submissao submission) {
-        if (!listaSubmi.add(submission)) {
-            return false;
-        } else{
-            return true;
-        }
+        return listaSubmi.add(submission);
     }
 
     @Override
     public Submissao consultarTitulo(String titulo) {
-        for (Submissao submission : listaSubmi) {
-            //if (submission.getTitle().equals(titulo)) {
-            //    return submission;
-            //}
+        for (Submissao submissao: listaSubmi) {
+            if (submissao.getTituloSubmissao().equals(titulo)) {
+                return submissao;
+            }
         }
         return null;
     }
 
     @Override
     public List<Submissao> consultarAutor(String autor) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Submissao> submissoesAutor = new ArrayList<>();
+        for (Submissao submissao : listaSubmi) {
+            if (submissao.getAutor().equals(autor)) {
+                submissoesAutor.add(submissao);
+            }
+        }
+        return submissoesAutor;
     }
 
     @Override
     public boolean excluir(String titulo) {
-        // TODO Auto-generated method stub
-        return false;
+        for (Submissao submissao : listaSubmi) {
+            return listaSubmi.remove(summissao.getTituloSubmissao().equals(titulo));
+        }
     }
 
     
