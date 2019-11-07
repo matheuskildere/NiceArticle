@@ -23,7 +23,7 @@ public class Monografia extends SubmissaoCientifica {
     public Monografia(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
             String instituicao[], String palavraChave[], TipoMonografia tipo, String orientador, String curso, int ano,
             int numeroDePaginas, String resumo, String abstractt) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, instituicao, palavraChave);
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 1,instituicao, palavraChave);
         this.tipo = tipo;
         this.orientador = orientador;
         this.curso = curso;
@@ -31,7 +31,6 @@ public class Monografia extends SubmissaoCientifica {
         this.numeroDePaginas = numeroDePaginas;
         this.resumo = resumo;
         this.abstractt = abstractt;
-        MAX_AUTORES = 1;
     }
 
     /**

@@ -12,8 +12,8 @@ public abstract class SubmissaoApresentacao extends Submissao {
     protected int duracao;
 
     public SubmissaoApresentacao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
-            String resumo, String abstractt, int duracao) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao);
+            int MAX_AUTORES, String resumo, String abstractt, int duracao) {
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, MAX_AUTORES);
         this.resumo = resumo;
         this.abstractt = abstractt;
         this.duracao = duracao;

@@ -10,8 +10,8 @@ public abstract class SubmissaoCientifica extends Submissao {
     protected String palavraChave[];
 
     public SubmissaoCientifica(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
-            String instituicao[], String palavraChave[]) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao);
+            int MAX_AUTORES, String instituicao[], String palavraChave[]) {
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, MAX_AUTORES);
         this.instituicao = instituicao;
         this.palavraChave = palavraChave;
     }

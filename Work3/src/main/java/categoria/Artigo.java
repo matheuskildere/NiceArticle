@@ -16,10 +16,9 @@ public class Artigo extends SubmissaoCientifica {
 
     public Artigo(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], String instituicao[],
             String palavraChave[], String resumo, String abstractt) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, instituicao, palavraChave);
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 8, instituicao, palavraChave);
         this.resumo = resumo;
         this.abstractt = abstractt;
-        MAX_AUTORES = 8;
     }
 
     /**

@@ -12,9 +12,8 @@ public class Palestra extends SubmissaoApresentacao {
 
     public Palestra(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], String resumo,
             String abstractt, int duracao, String curriculo) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, resumo, abstractt, duracao);
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 1, resumo, abstractt, duracao);
         this.curriculo = curriculo;
-        MAX_AUTORES = 1;
     }
 
     /**

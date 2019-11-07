@@ -19,12 +19,11 @@ public class RelatorioTecnico extends SubmissaoCientifica {
     public RelatorioTecnico(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
             String instituicao[], String palavraChave[], String resumo, String abstractt, int ano,
             int numeroDePaginas) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, instituicao, palavraChave);
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 4, instituicao, palavraChave);
         this.resumo = resumo;
         this.abstractt = abstractt;
         this.ano = ano;
         this.numeroDePaginas = numeroDePaginas;
-        MAX_AUTORES = 4;
     }
 
     /**

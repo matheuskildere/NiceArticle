@@ -11,10 +11,11 @@ public abstract class Submissao {
     protected String autoresSubmissao[];
     protected int MAX_AUTORES;
 
-    public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[]) {
+    public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], int MAX_AUTORES) {
         this.tituloSubmissao = tituloSubmissao;
         this.situacaoSubmissao = situacaoSubmissao;
         this.autoresSubmissao = autoresSubmissao;
+        this.MAX_AUTORES = MAX_AUTORES;
     }
 
     /**

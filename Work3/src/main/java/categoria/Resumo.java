@@ -13,8 +13,7 @@ public class Resumo extends SubmissaoCientifica {
 
     public Resumo(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], String instituicao[],
             String palavraChave[]) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, instituicao, palavraChave);
-        MAX_AUTORES = 8;
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 8, instituicao, palavraChave);
     }
 
 }

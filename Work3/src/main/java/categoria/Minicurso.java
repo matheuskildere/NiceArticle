@@ -13,10 +13,9 @@ public class Minicurso extends SubmissaoApresentacao {
 
     public Minicurso(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], String resumo,
             String abstractt, int duracao, String recursos[], String metodologia) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, resumo, abstractt, duracao);
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 3, resumo, abstractt, duracao);
         this.recursos = recursos;
         this.metodologia = metodologia;
-        MAX_AUTORES = 3;
     }
 
     /**
