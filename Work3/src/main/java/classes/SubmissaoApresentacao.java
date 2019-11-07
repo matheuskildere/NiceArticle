@@ -3,13 +3,15 @@ package classes;
 /**
  * SubmissaoApresentacao
  */
-public abstract class SubmissaoApresentacao {
+public abstract class SubmissaoApresentacao extends Submissao {
 
     protected String resumo;
     protected String abstractt;
     protected int duracao;
 
-    public SubmissaoApresentacao(String resumo, String abstractt, int duracao) {
+    public SubmissaoApresentacao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
+            int MAX_AUTORES, String resumo, String abstractt, int duracao) {
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, MAX_AUTORES);
         this.resumo = resumo;
         this.abstractt = abstractt;
         this.duracao = duracao;
