@@ -1,5 +1,7 @@
 package classes;
 
+import Enumeracao.Situacao;
+
 /**
  * SubmissaoApresentacao
  */
@@ -10,8 +12,8 @@ public abstract class SubmissaoApresentacao extends Submissao {
     protected int duracao;
 
     public SubmissaoApresentacao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[],
-            int MAX_AUTORES, String resumo, String abstractt, int duracao) {
-        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, MAX_AUTORES);
+            String resumo, String abstractt, int duracao) {
+        super(tituloSubmissao, situacaoSubmissao, autoresSubmissao);
         this.resumo = resumo;
         this.abstractt = abstractt;
         this.duracao = duracao;

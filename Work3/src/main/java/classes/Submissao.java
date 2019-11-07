@@ -11,11 +11,10 @@ public abstract class Submissao {
     protected String autoresSubmissao[];
     protected int MAX_AUTORES;
 
-    public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], int MAX_AUTORES) {
+    public Submissao(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[]) {
         this.tituloSubmissao = tituloSubmissao;
         this.situacaoSubmissao = situacaoSubmissao;
         this.autoresSubmissao = autoresSubmissao;
-        this.MAX_AUTORES = MAX_AUTORES;
     }
 
     /**
@@ -74,7 +73,7 @@ public abstract class Submissao {
         MAX_AUTORES = mAX_AUTORES;
     }
 
-    public toString() {
+    public String toString() {
         return this.tituloSubmissao +" "+ this.situacaoSubmissao +" "+ this.autoresSubmissao + " " + this.MAX_AUTORES;
     }
 
