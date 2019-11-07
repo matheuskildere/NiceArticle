@@ -1,5 +1,7 @@
 package classes;
 
+import Enumeracao.Situacao;
+
 /**
  * Submissao
  */
