@@ -33,8 +33,9 @@ public class SubmissionController implements ISubmissoes {
         for (Submissao submissao : listaSubmi) {
             String autores[] = submissao.getAutoresSubmissao();
             for (int i = 0; i < autores.length; i++) {
-                autores[i].equals(autor);
-                submissoesAutor.add(submissao);
+                if (autores[i].equals(autor)) {
+                    submissoesAutor.add(submissao);    
+                }
             } 
         }
 

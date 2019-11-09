@@ -15,21 +15,21 @@ public class Colors {
     /**
      * @return the branco
      */
-    public Color getBranco() {
+    public Color branco() {
         return branco;
     }
 
     /**
      * @return the preto
      */
-    public Color getPreto() {
+    public Color preto() {
         return preto;
     }
 
     /**
      * @return the preto_Claro
      */
-    public Color getPreto_Claro() {
+    public Color preto_Claro() {
         return preto_Claro;
     }
 }

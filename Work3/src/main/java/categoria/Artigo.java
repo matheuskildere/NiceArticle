@@ -49,4 +49,17 @@ public class Artigo extends SubmissaoCientifica {
         this.abstractt = abstractt;
     }
 
+    @Override
+    public int getMAX_AUTORES() {
+        // TODO Auto-generated method stub
+        return super.getMAX_AUTORES();
+    }
+
+    /**
+     * @return the mAX_INSTITUICOES
+     */
+    public int getMAX_INSTITUICOES() {
+        return MAX_INSTITUICOES;
+    }
+
 }
