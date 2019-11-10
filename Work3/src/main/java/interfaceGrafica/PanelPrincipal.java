@@ -126,18 +126,24 @@ public class PanelPrincipal extends JPanel {
         b_submeter.addActionListener(new ActionListener() { 
             public void actionPerformed(ActionEvent event) {
                 try {
-                    if (vetor_Autores == null) {
-                        throw new IllegalArgumentException("Adicione ao menos um autor ao artigo"); 
+                    if (j_Titulo.getText().equals("")){
+                        throw new IllegalArgumentException("Seu trabalho necessita de um Título");
+                    }else if (vetor_Autores[0] == null) {
+                        throw new IllegalArgumentException("É necessário informar ao menos um autor"); 
+                    }else if(vetor_Instituicoes[0] == null){
+                        throw new IllegalArgumentException("É necessário informar uma instituição ligada ao trabalho"); 
+                    }else if (vetor_PalavrasC[0] == null){
+                        throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
+                    }else if (j_Resumo.getText().equals("")){
+                        throw new IllegalArgumentException("Seu trabalho necessita de um Resumo");
+                    }else if (j_Abstract.getText().equals("")){
+                        throw new IllegalArgumentException("Your work needs an Abstract");
+                    }else {
+                        submissao = new Artigo(j_Titulo.getText(), Situacao.APROVADO, vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
+                        listaSubmissao.incluir(submissao);
                     }
-                    if (vetor_Instituicoes == null) {
-                        throw new IllegalArgumentException("Adicione ao menos uma instituição ao artigo"); 
-                    }if (vetor_PalavrasC == null) {
-                        throw new IllegalArgumentException("Adicione ao menos uma palavra chave ao artigo"); 
-                    }
-                    submissao = new Artigo(j_Titulo.getText(), Situacao.APROVADO, vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                    listaSubmissao.incluir(submissao);
-                } catch (Exception e) {
-                    
+                } catch (IllegalArgumentException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
                 }
             } 
         });
