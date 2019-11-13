@@ -25,10 +25,10 @@ public class PanelPrincipal extends JPanel {
      *
      */
     private static final long serialVersionUID = 1L;
-    private int implementaJtextField = 0;
-    private int implementaJlabels = 0;
+    protected int implementaJtextField = 0;
+    protected int implementaJlabels = 0;
     protected JPanel panel = new JPanel();
-    private Colors cor = new Colors();
+    protected Colors cor = new Colors();
     
     protected JTextField j_Titulo = new JTextField();
     protected JTextField j_Autores = new JTextField();
@@ -43,6 +43,7 @@ public class PanelPrincipal extends JPanel {
     protected JButton b_submeter;
     
     protected JLabel l_Titulo;
+    protected JLabel l_Categoria;
     protected JLabel l_Autores;
     protected JLabel l_Instituicoeseld;
     protected JLabel l_PalavrasC;
@@ -55,14 +56,15 @@ public class PanelPrincipal extends JPanel {
     protected String [] vetor_Instituicoes= new String[8];
     protected String [] vetor_PalavrasC= new String[4];
 
+
     public PanelPrincipal(){
         configuraPanel();
         labelsAndFields();
         buttonsAdd();
     }
 
-    private void configuraPanel(){
-        setBounds(131, 175, 1100, 420);
+    protected void configuraPanel(){
+        setBounds(0, 168, 1366, 600);
         setBackground(cor.preto_Claro());
         getComponentPopupMenu();
         setLayout(null);
@@ -169,10 +171,10 @@ public class PanelPrincipal extends JPanel {
             if (implementaJtextField > 240) {
                 implementaJtextField = 0;
             }
-            b_add.setBounds(470 ,143 +implementaJtextField, 60, 35);
+            b_add.setBounds(532 ,143 +implementaJtextField, 60, 35);
             b_add.setFont(new Font("Muli", 4, 10));
         } else if (tipo == 2){
-            b_add.setBounds(935 ,123 +implementaJtextField, 110, 35);
+            b_add.setBounds(1120 ,153 +implementaJtextField, 110, 35);
             b_add.setFont(new Font("Muli", 4, 15));
         }
         b_add.setFocusPainted(false);
@@ -188,9 +190,9 @@ public class PanelPrincipal extends JPanel {
      */
     protected void settingsTxt(JTextField j_, int tipo){
         if (tipo == 1) {
-            j_.setBounds(54, 63 + implementaJtextField, 478, 35);
+            j_.setBounds(114, 63 + implementaJtextField, 478, 35);
         }else if (tipo == 2) {
-            j_.setBounds(54, 63 + implementaJtextField, 412, 35);
+            j_.setBounds(114, 63 + implementaJtextField, 412, 35);
         }
         j_.setFont(new Font("Muli", Font.PLAIN, 19));
         j_.setBorder(null);
@@ -202,7 +204,7 @@ public class PanelPrincipal extends JPanel {
     if(implementaJtextField > 195){
         implementaJtextField = 0;
     }
-    j_.setBounds(568, 63 + implementaJtextField, 478, 115);
+    j_.setBounds(750, 63 + implementaJtextField, 478, 115);
     j_.setFont(new Font("Muli", Font.PLAIN, 19));
     j_.setBorder(null);
     j_.setLineWrap(true);
@@ -221,12 +223,12 @@ public class PanelPrincipal extends JPanel {
     protected void settingsLabels(JLabel l_, String nome, int tipo){ 
         l_ = new JLabel(nome);
         if (tipo == 1) {
-            l_.setBounds(54, 33 + implementaJlabels, 250, 30);
+            l_.setBounds(114, 33 + implementaJlabels, 250, 30);
         }else if (tipo == 2) {
             if (implementaJlabels > 162) {
                 implementaJlabels = 0;
             }
-            l_.setBounds(568, 33 + implementaJlabels, 250, 30);
+            l_.setBounds(750, 33 + implementaJlabels, 250, 30);
             implementaJlabels += 81;
         }
         l_.setFont(new Font("Muli", 4, 23));
