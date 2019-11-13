@@ -21,7 +21,7 @@ public abstract class SubmissaoCientifica extends Submissao {
      */
     public String[] getInstituicao() {
         return instituicao;
-    }
+    }   
 
     /**
      * @param instituicao the instituicao to set

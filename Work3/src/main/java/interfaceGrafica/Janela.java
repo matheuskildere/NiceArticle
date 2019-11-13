@@ -30,7 +30,8 @@ public class Janela implements ActionListener {
 
     private Colors cor = new Colors();
 
-    public JPanel panelInicio;
+    public PanelInicial panel = new PanelInicial();
+    public PanelPrincipal panelPrinc = new PanelPrincipal();
 
     public Janela() {
 
@@ -39,6 +40,7 @@ public class Janela implements ActionListener {
         frame.setSize(1366, 768);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -57,6 +59,7 @@ public class Janela implements ActionListener {
         iconPesquisa.setBounds(1260, 30, 50, 50);
         iconPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search.png")));
         iconPesquisa.setFont(new Font("Arial", Font.PLAIN, 15));
+        iconPesquisa.setBackground(cor.branco());
         frame.getContentPane().add(iconPesquisa);
 
         bArtigo = new JButton("  Artigo");
@@ -125,11 +128,11 @@ public class Janela implements ActionListener {
         bRelatorioTecnico.setBackground(cor.branco());
         frame.getContentPane().add(bRelatorioTecnico);
 
-        panelInicio = new JPanel();
-        panelInicio.setBounds(0, 175, 1366, 593);
-        panelInicio.setBackground(cor.preto());
-        panelInicio.setVisible(true);
-        frame.getContentPane().add(panelInicio);
+        //panelInicio = new JPanel();
+        //panelInicio.setBounds(0, 175, 1366, 593);
+        //panelInicio.setBackground(cor.preto());
+        //rpanelInicio.setVisible(true);
+        frame.getContentPane().add(panel);
         
         
         frame.setVisible(true);
@@ -139,11 +142,8 @@ public class Janela implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
 
         if (ae.getSource() == bArtigo) {
-
-            PanelPrincipal panelArtigo = new PanelPrincipal();
-            frame.getContentPane().add(panelArtigo);
-            panelInicio (panelArtigo);
-            panelArtigo.setVisible(true);
+            panel.setVisible(false);
+            frame.getContentPane().add(panelPrinc);
 
 
 

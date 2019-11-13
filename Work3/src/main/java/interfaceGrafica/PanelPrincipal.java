@@ -64,7 +64,7 @@ public class PanelPrincipal extends JPanel {
     }
 
     protected void configuraPanel(){
-        setBounds(0, 168, 1366, 600);
+        setBounds(0, 175, 1366, 600);
         setBackground(cor.preto_Claro());
         getComponentPopupMenu();
         setLayout(null);
