@@ -2,6 +2,7 @@ package interfaceGrafica;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.Font;
 
 import Color.Colors;
 
@@ -31,7 +32,12 @@ public class Janela implements ActionListener {
     private Colors cor = new Colors();
 
     public PanelInicial panel = new PanelInicial();
+    public PanelMonografia panelMonografia = new PanelMonografia();
     public PanelPrincipal panelPrinc = new PanelPrincipal();
+    public PanelResumo panelResumo = new PanelResumo();
+    public PanelPalestra panelPalestra = new PanelPalestra();
+    public PanelMinicursos panelMinicursos = new PanelMinicursos();
+    public PanelRelatorioTecnico panelRelatorioTecnico = new PanelRelatorioTecnico();
 
     public Janela() {
 
@@ -127,36 +133,87 @@ public class Janela implements ActionListener {
         bRelatorioTecnico.setBorderPainted(false);
         bRelatorioTecnico.setBackground(cor.branco());
         frame.getContentPane().add(bRelatorioTecnico);
-
-        //panelInicio = new JPanel();
-        //panelInicio.setBounds(0, 175, 1366, 593);
-        //panelInicio.setBackground(cor.preto());
-        //rpanelInicio.setVisible(true);
-        frame.getContentPane().add(panel);
         
+        frame.getContentPane().add(panelPrinc);
+        frame.getContentPane().add(panelResumo);
+        frame.getContentPane().add(panelPalestra);
+        frame.getContentPane().add(panelMinicursos);
+        frame.getContentPane().add(panelMonografia);
+        frame.getContentPane().add(panelRelatorioTecnico);
+        frame.getContentPane().add(panel);
+        panel.setVisible(true);
+        panelPrinc.setVisible(false);
+        panelResumo.setVisible(false);
+        panelPalestra.setVisible(false);
+        panelMinicursos.setVisible(false);
+        panelMonografia.setVisible(false);
+        panelRelatorioTecnico.setVisible(false);
+    
         
         frame.setVisible(true);
 
     }
 
     public void actionPerformed(ActionEvent ae) {
-
         if (ae.getSource() == bArtigo) {
             panel.setVisible(false);
-            frame.getContentPane().add(panelPrinc);
-
-
-
+            panelResumo.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelPrinc.setVisible(true);
+            
         }
 
         if (ae.getSource() == bResumo) {
-
+            panel.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelResumo.setVisible(true);
+            
         }
 
         if (ae.getSource() == bPalestra) {
-
+            panel.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelResumo.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelPalestra.setVisible(true);
         }
 
+        if (ae.getSource() == bMiniCurso) {
+            panel.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelResumo.setVisible(false);
+            panelPalestra.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelMinicursos.setVisible(true);
+        }
+
+        if (ae.getSource() == bMonografia) {
+            panel.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelResumo.setVisible(false);
+            panelPalestra.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelMonografia.setVisible(true);
+        }
+
+        if (ae.getSource() == bRelatorioTecnico) {
+            panel.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelResumo.setVisible(false);
+            panelPalestra.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(true);
+        }
     }
 
     public void panelInicio (JPanel panel) {

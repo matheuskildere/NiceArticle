@@ -34,9 +34,17 @@ public class PanelPrincipal extends JPanel {
     protected JTextField j_Autores = new JTextField();
     protected JTextField j_Instituicoes = new JTextField();
     protected JTextField j_PalavrasC = new JTextField();
+    protected JTextField j_Recursos = new JTextField();
+    protected JTextField j_Duracao = new JTextField();
+    protected JTextField j_Metodologia = new JTextField();
+    protected JTextField j_Orientador = new JTextField();
+    protected JTextField j_Curso = new JTextField();
+    protected JTextField j_Ano = new JTextField();
+    protected JTextField j_NumeroPaginas = new JTextField();
+    protected JTextArea j_Curriculo = new JTextArea();
     protected JTextArea j_Resumo = new JTextArea();
     protected JTextArea j_Abstract = new JTextArea();
-
+    
     protected JButton b_addAutores;
     protected JButton b_addInstituicoes;
     protected JButton b_addPalavrasC;
@@ -49,9 +57,9 @@ public class PanelPrincipal extends JPanel {
     protected JLabel l_PalavrasC;
     protected JLabel l_Resumo;
     protected JLabel l_Abstract;
-
+    
     protected SubmissionController listaSubmissao = new SubmissionController();
-    private Submissao submissao;
+    protected Submissao submissao;
     protected String [] vetor_Autores= new String[8];
     protected String [] vetor_Instituicoes= new String[8];
     protected String [] vetor_PalavrasC= new String[4];
@@ -74,81 +82,18 @@ public class PanelPrincipal extends JPanel {
     protected void buttonsAdd(){
         b_addAutores = new JButton("add");
         settingsButtons(b_addAutores,1);
-        b_addAutores.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent event) {
-                boolean conseguiu = false;
-                boolean avisou = false;
-                for (int i = 0; i < vetor_Autores.length; i++) {
-                    if (vetor_Autores[i] == null && !conseguiu) {
-                        vetor_Autores[i] = j_Autores.getText();
-                        conseguiu = true;
-                    } else if(vetor_Autores[vetor_Autores.length -1] != null && !avisou){
-                        JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de autores (8)!");
-                        avisou = true;
-                    }
-                }
-            } 
-        });
+        b_addAutores.addActionListener(actionPerformed(b_addAutores));
+        
         b_addInstituicoes = new JButton("add");
         settingsButtons(b_addInstituicoes,1);
-        b_addInstituicoes.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent event) {
-                boolean conseguiu = false;
-                boolean avisou = false;
-                for (int i = 0; i < vetor_Instituicoes.length; i++) {
-                    if (vetor_Instituicoes[i] == null && !conseguiu) {
-                        vetor_Instituicoes[i] = j_Instituicoes.getText();
-                        conseguiu = true;
-                    } else if(vetor_Instituicoes[vetor_Instituicoes.length -1] != null && !avisou){
-                        JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de instituições (8)!");
-                        avisou = true;
-                    }
-                }
-            } 
-        });
+        b_addInstituicoes.addActionListener(actionPerformed(b_addInstituicoes));
+        
         b_addPalavrasC = new JButton("add");
         settingsButtons(b_addPalavrasC,1);
-        b_addPalavrasC.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent event) {
-                boolean conseguiu = false;
-                boolean avisou = false;
-                for (int i = 0; i < vetor_PalavrasC.length; i++) {
-                    if (vetor_PalavrasC[i] == null && !conseguiu) {
-                        vetor_PalavrasC[i] = j_PalavrasC.getText();
-                        conseguiu = true;
-                    } else if(vetor_PalavrasC[vetor_PalavrasC.length -1] != null && !avisou){
-                        JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de Palavras Chaves (8)!");
-                        avisou = true;
-                    }
-                }
-            } 
-        });
+        b_addPalavrasC.addActionListener(actionPerformed(b_addPalavrasC));
         b_submeter = new JButton("Submeter");
         settingsButtons(b_submeter, 2);
-        b_submeter.addActionListener(new ActionListener() { 
-            public void actionPerformed(ActionEvent event) {
-                try {
-                    if (j_Titulo.getText().equals("")){
-                        throw new IllegalArgumentException("Seu trabalho necessita de um Título");
-                    }else if (vetor_Autores[0] == null) {
-                        throw new IllegalArgumentException("É necessário informar ao menos um autor"); 
-                    }else if(vetor_Instituicoes[0] == null){
-                        throw new IllegalArgumentException("É necessário informar uma instituição ligada ao trabalho"); 
-                    }else if (vetor_PalavrasC[0] == null){
-                        throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
-                    }else if (j_Resumo.getText().equals("")){
-                        throw new IllegalArgumentException("Seu trabalho necessita de um Resumo");
-                    }else if (j_Abstract.getText().equals("")){
-                        throw new IllegalArgumentException("Your work needs an Abstract");
-                    }else {
-                        submissao = new Artigo(j_Titulo.getText(), Situacao.APROVADO, vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                        listaSubmissao.incluir(submissao);
-                    }
-                } catch (IllegalArgumentException e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                }
-            } 
-        });
+        b_submeter.addActionListener(actionPerformed(b_submeter));
     }
 
     protected void labelsAndFields(){
@@ -235,5 +180,88 @@ public class PanelPrincipal extends JPanel {
         l_.setForeground(cor.branco());
         add(l_);
         implementaJlabels += 81;
+    }
+
+    protected ActionListener actionPerformed(JButton b){
+        if (b == b_addAutores) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    boolean conseguiu = false;
+                    boolean avisou = false;
+                    for (int i = 0; i < vetor_Autores.length; i++) {
+                        if (vetor_Autores[i] == null && !conseguiu) {
+                            vetor_Autores[i] = j_Autores.getText();
+                            conseguiu = true;
+                        } else if(vetor_Autores[vetor_Autores.length -1] != null && !avisou){
+                            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de autores (8)!");
+                            avisou = true;
+                        }
+                    }
+                }
+            }; 
+        }
+        if (b == b_addInstituicoes) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    boolean conseguiu = false;
+                    boolean avisou = false;
+                    for (int i = 0; i < vetor_Instituicoes.length; i++) {
+                        if (vetor_Instituicoes[i] == null && !conseguiu) {
+                            vetor_Instituicoes[i] = j_Instituicoes.getText();
+                            conseguiu = true;
+                        } else if(vetor_Instituicoes[vetor_Instituicoes.length -1] != null && !avisou){
+                            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de instituições (8)!");
+                            avisou = true;
+                        }
+                    }
+                } 
+            };
+        }
+        if (b == b_addPalavrasC) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    boolean conseguiu = false;
+                    boolean avisou = false;
+                    for (int i = 0; i < vetor_PalavrasC.length; i++) {
+                        if (vetor_PalavrasC[i] == null && !conseguiu) {
+                            vetor_PalavrasC[i] = j_PalavrasC.getText();
+                            conseguiu = true;
+                        } else if(vetor_PalavrasC[vetor_PalavrasC.length -1] != null && !avisou){
+                            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de Palavras Chaves (8)!");
+                            avisou = true;
+                        }
+                    }
+                } 
+            };
+        }
+        if (b == b_submeter) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    try {
+                        if (j_Titulo.getText().equals("")){
+                            throw new IllegalArgumentException("Seu trabalho necessita de um Título");
+                        }else if (vetor_Autores[0] == null) {
+                            throw new IllegalArgumentException("É necessário informar ao menos um autor"); 
+                        }else if(vetor_Instituicoes[0] == null){
+                            throw new IllegalArgumentException("É necessário informar uma instituição ligada ao trabalho"); 
+                        }else if (vetor_PalavrasC[0] == null){
+                            throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
+                        }else if (j_Resumo.getText().equals("")){
+                            throw new IllegalArgumentException("Seu trabalho necessita de um Resumo");
+                        }else if (j_Abstract.getText().equals("")){
+                            throw new IllegalArgumentException("Your work needs an Abstract");
+                        }else {
+                            Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
+                            int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
+                            submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
+                            listaSubmissao.incluir(submissao);
+                        }
+                    } catch (IllegalArgumentException e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                } 
+            };
+        }
+        return null;
     }
 }
