@@ -62,4 +62,10 @@ public class Artigo extends SubmissaoCientifica {
         return MAX_INSTITUICOES;
     }
 
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return super.toString();
+    }
+
 }

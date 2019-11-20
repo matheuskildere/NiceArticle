@@ -255,6 +255,8 @@ public class PanelPrincipal extends JPanel {
                             int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
                             submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
                             listaSubmissao.incluir(submissao);
+                            clearAllText();
+                            System.out.println(listaSubmissao.consultarTitulo("nice").toString());
                         }
                     } catch (IllegalArgumentException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -263,5 +265,21 @@ public class PanelPrincipal extends JPanel {
             };
         }
         return null;
+    }
+    public void clearAllText(){
+        j_Abstract.setText("");
+        j_Ano.setText("");
+        j_Autores.setText("");
+        j_Curriculo.setText("");
+        j_Curso.setText("");
+        j_Duracao.setText("");
+        j_Instituicoes.setText("");
+        j_Metodologia.setText("");
+        j_NumeroPaginas.setText("");
+        j_Orientador.setText("");
+        j_PalavrasC.setText("");
+        j_Recursos.setText("");
+        j_Resumo.setText("");
+        j_Titulo.setText("");
     }
 }
