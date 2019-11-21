@@ -6,12 +6,9 @@ import javax.swing.*;
 /**
  * PanelInicial
  */
-public class PanelInicial extends PanelPrincipal {
+public class PanelResultadoPesquisaAutor extends PanelPrincipal {
 
-
-    private JLabel labelAll;
-    private JComboBox cbFiltroTipo;
-    private JComboBox cbFiltroSituacao;
+private JLabel lAll;
     
     private JLabel lTitulo;
     private JLabel lAutor;
@@ -29,37 +26,16 @@ public class PanelInicial extends PanelPrincipal {
  
     private static final long serialVersionUID = 1L;
 
-    public PanelInicial() {
+    public PanelResultadoPesquisaAutor() {
         removeAll();
 
 
-        labelAll = new JLabel(" Filtros");
-        labelAll.setBounds(50, 10, 200, 60);
-        labelAll.setFont(new Font("Muli", Font.PLAIN, 20));
-        labelAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/funnel.png")));
-        labelAll.setForeground(cor.branco());
-        add(labelAll);   
-
-        cbFiltroTipo = new JComboBox<>();
-        cbFiltroTipo.setBounds(140, 10, 100, 60);
-        cbFiltroTipo.setFont(new Font("Muli", Font.PLAIN, 15));
-        cbFiltroTipo.addItem("Todos");
-        cbFiltroTipo.addItem("Artigo");
-        cbFiltroTipo.addItem("Resumo");
-        cbFiltroTipo.addItem("Palestra");
-        cbFiltroTipo.addItem("Mini Curso");
-        cbFiltroTipo.addItem("Monografia");
-        cbFiltroTipo.addItem("Relatório técnico");
-        add(cbFiltroTipo);
-
-        cbFiltroSituacao = new JComboBox<>();
-        cbFiltroSituacao.setBounds(250, 10, 100, 60);
-        cbFiltroSituacao.setFont(new Font("Muli", Font.PLAIN, 15));
-        cbFiltroSituacao.addItem("Todos");
-        cbFiltroSituacao.addItem("Aprovados");
-        cbFiltroSituacao.addItem("Sob Avaliação");
-        cbFiltroSituacao.addItem("Reprovados");
-        add(cbFiltroSituacao);
+        lAll = new JLabel("  Resultado da pesquisa: Matheus Kildere");
+        lAll.setBounds(50, 30, 450, 60);
+        lAll.setFont(new Font("Muli", Font.PLAIN, 20));
+        lAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search1.png")));
+        lAll.setForeground(cor.branco());
+        add(lAll);
 
         lTitulo = new JLabel(" Titulo");
         lTitulo.setBounds(50, 100, 200, 60);
@@ -123,12 +99,12 @@ public class PanelInicial extends PanelPrincipal {
         settingsLabels(init_Autor, "Matheus Kildere", 2);
         settingsLabels(init_Categoria, "Aprovado", 3);
 
-        settingsLabels(init_Titulo, "Não sei", 1);
-        settingsLabels(init_Autor, "Brandow Buenos", 2);
+        settingsLabels(init_Titulo, "Inteligência Artificial", 1);
+        settingsLabels(init_Autor, "Matheus Kildere", 2);
         settingsLabels(init_Categoria, "Em análise", 3);
 
-        settingsLabels(init_Titulo, "A importância das capivaras", 1);
-        settingsLabels(init_Autor, "Willian Clemente", 2);
+        settingsLabels(init_Titulo, "Inteligência Artificial", 1);
+        settingsLabels(init_Autor, "Matheus Kildere", 2);
         settingsLabels(init_Categoria, "Reprovado", 3);
 
         settingsLabels(init_Titulo, "Inteligência Artificial", 1);

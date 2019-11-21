@@ -20,7 +20,7 @@ public class Janela implements ActionListener {
     private JLabel lTitulo;
 
     private JTextField tPesquisa;
-    private JButton iconPesquisa;
+    private JButton bPesquisa;
 
     private JButton bArtigo;
     private JButton bResumo;
@@ -30,7 +30,7 @@ public class Janela implements ActionListener {
     private JButton bRelatorioTecnico;
 
     private Colors cor = new Colors();
-
+    JScrollPane scrollPane;
     public PanelInicial panel = new PanelInicial();
     public PanelMonografia panelMonografia = new PanelMonografia();
     public PanelPrincipal panelPrinc = new PanelPrincipal();
@@ -38,6 +38,8 @@ public class Janela implements ActionListener {
     public PanelPalestra panelPalestra = new PanelPalestra();
     public PanelMinicursos panelMinicursos = new PanelMinicursos();
     public PanelRelatorioTecnico panelRelatorioTecnico = new PanelRelatorioTecnico();
+    public PanelResultadoPesquisaAutor panelResultadoPesquisaAutor = new PanelResultadoPesquisaAutor();
+    public PanelResultadoPesquisaSubmissao panelResultadoPesquisaSubmissao = new PanelResultadoPesquisaSubmissao();
 
     public Janela() {
 
@@ -61,12 +63,13 @@ public class Janela implements ActionListener {
         tPesquisa.setFont(new Font("Helvetica", Font.PLAIN, 15));
         frame.getContentPane().add(tPesquisa);
 
-        iconPesquisa = new JButton("");
-        iconPesquisa.setBounds(1260, 30, 50, 50);
-        iconPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search.png")));
-        iconPesquisa.setFont(new Font("Arial", Font.PLAIN, 15));
-        iconPesquisa.setBackground(cor.branco());
-        frame.getContentPane().add(iconPesquisa);
+        bPesquisa = new JButton("");
+        bPesquisa.setBounds(1260, 30, 50, 50);
+        bPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search.png")));
+        bPesquisa.setFont(new Font("Arial", Font.PLAIN, 15));
+        bPesquisa.setBackground(cor.branco());
+        bPesquisa.addActionListener(this);
+        frame.getContentPane().add(bPesquisa);
 
         bArtigo = new JButton("  Artigo");
         bArtigo.setBounds(40, 110, 250, 60);
@@ -132,15 +135,23 @@ public class Janela implements ActionListener {
         bRelatorioTecnico.setFocusPainted(false);
         bRelatorioTecnico.setBorderPainted(false);
         bRelatorioTecnico.setBackground(cor.branco());
+
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(0, 175, 1366, 800);
+        scrollPane.setViewportView(panelResultadoPesquisaSubmissao);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
         frame.getContentPane().add(bRelatorioTecnico);
-        
         frame.getContentPane().add(panelPrinc);
         frame.getContentPane().add(panelResumo);
         frame.getContentPane().add(panelPalestra);
         frame.getContentPane().add(panelMinicursos);
         frame.getContentPane().add(panelMonografia);
         frame.getContentPane().add(panelRelatorioTecnico);
+        frame.getContentPane().add(panelResultadoPesquisaAutor);
+        frame.getContentPane().add(scrollPane);
         frame.getContentPane().add(panel);
+
         panel.setVisible(true);
         panelPrinc.setVisible(false);
         panelResumo.setVisible(false);
@@ -148,21 +159,37 @@ public class Janela implements ActionListener {
         panelMinicursos.setVisible(false);
         panelMonografia.setVisible(false);
         panelRelatorioTecnico.setVisible(false);
-    
-        
+        panelResultadoPesquisaAutor.setVisible(false);
+        scrollPane.setVisible(false);
+
         frame.setVisible(true);
 
     }
 
     public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == bPesquisa) {
+
+            panel.setVisible(false);
+            panelResumo.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            scrollPane.setVisible(true);
+
+        }
+
         if (ae.getSource() == bArtigo) {
             panel.setVisible(false);
             panelResumo.setVisible(false);
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelPrinc.setVisible(true);
-            
+
         }
 
         if (ae.getSource() == bResumo) {
@@ -171,8 +198,10 @@ public class Janela implements ActionListener {
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelResumo.setVisible(true);
-            
+
         }
 
         if (ae.getSource() == bPalestra) {
@@ -182,6 +211,8 @@ public class Janela implements ActionListener {
             panelResumo.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelPalestra.setVisible(true);
         }
 
@@ -192,6 +223,8 @@ public class Janela implements ActionListener {
             panelPalestra.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelMinicursos.setVisible(true);
         }
 
@@ -202,6 +235,8 @@ public class Janela implements ActionListener {
             panelPalestra.setVisible(false);
             panelMinicursos.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelMonografia.setVisible(true);
         }
 
@@ -212,14 +247,15 @@ public class Janela implements ActionListener {
             panelPalestra.setVisible(false);
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            panelResultadoPesquisaSubmissao.setVisible(false);
             panelRelatorioTecnico.setVisible(true);
         }
     }
 
-    public void panelInicio (JPanel panel) {
+    public void panelInicio(JPanel panel) {
         frame.add(panel);
         panel.setVisible(false);
     }
-    
 
 }
