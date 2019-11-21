@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Enumeracao.Situacao;
+import categoria.Resumo;
 
 /**
  * PanelResumo
@@ -138,18 +139,19 @@ public class PanelResumo extends PanelPrincipal{
                 public void actionPerformed(ActionEvent event) {
                     try {
                         if (j_Titulo.getText().equals("")){
-                            throw new IllegalArgumentException("Seu trabalho necessita de um Titulo");
+                            throw new IllegalArgumentException("Seu resumo necessita de um Titulo");
                         }else if (vetor_Autores[0] == null) {
                             throw new IllegalArgumentException("E necessário informar ao menos um autor"); 
                         }else if(vetor_Instituicoes[0] == null){
                             throw new IllegalArgumentException("E necessário informar uma instituicao ligada ao trabalho"); 
                         }else if (vetor_PalavrasC[0] == null){
-                            throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
+                            throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu resumo"); 
                         }else {
                             Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
                             int x = JOptionPane.showOptionDialog(null, "Situacao da Submissao", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
-                            //submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                            //listaSubmissao.incluir(submissao);
+                            submissao = new Resumo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC);
+                            listaSubmissao.incluir(submissao);
+                            clearAllText();
                         }
                     } catch (IllegalArgumentException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
