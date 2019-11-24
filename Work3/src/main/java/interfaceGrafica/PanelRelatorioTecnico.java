@@ -106,6 +106,7 @@ public class PanelRelatorioTecnico extends PanelPrincipal{
                     }else {
                         //submissao = new Artigo(j_Titulo.getText(), Situacao.APROVADO, vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
                         //listaSubmissao.incluir(submissao);
+                        clearAllText();
                     }
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());

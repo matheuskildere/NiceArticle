@@ -6,7 +6,12 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import Enumeracao.Situacao;
+import Enumeracao.TipoMonografia;
+import categoria.Monografia;
 
 /**
  * PanelResumo
@@ -36,22 +41,36 @@ public class PanelMonografia extends PanelPrincipal{
         settingsTxt(j_Instituicoes, 1);
         settingsLabels(l_PalavrasC, "Palavras Chaves",1);
         settingsTxt(j_PalavrasC, 2);
-        settingsLabels(l_Orientador, "Orientador",2);
-        settingsTxt(j_Orientador, 3);
-        settingsLabels(l_NumeroPaginas, "Numero de Páginas",2);
-        settingsTxt(j_NumeroPaginas, 3);    
+        settingsLabels(l_Orientador, "Orientador",1);
+        settingsTxt(j_Orientador, 1);
+        settingsLabels(l_NumeroPaginas, "Nº de Páginas",2);
+        settingsTxt(j_NumeroPaginas, 4);    
+        settingsLabels(l_Ano, "Ano",3);
+        settingsTxt(j_Ano, 5);
         settingsLabels(l_Curso, "Curso",2);
         settingsTxt(j_Curso, 3);
-        settingsLabels(l_Ano, "Ano",2);
-        settingsTxt(j_Ano, 3);
+        settingsLabels(l_Resumo, "Resumo",2);
+        settingsTxtArea(j_Resumo,1);
+        settingsLabels(l_Abstract, "Abstract",2);
+        settingsTxtArea(j_Abstract,2);
     }
     @Override
     protected void settingsTxt(JTextField j_, int tipo) {
         if (tipo == 3) {
+            if(implementaJtextField >= 160){
+                implementaJtextField = 81;
+            }
+            j_.setBounds(750, 63 + implementaJtextField, 478, 35);
+        }
+        if (tipo == 4) {
             if(implementaJtextField >= 260){
                 implementaJtextField = 0;
             }
-            j_.setBounds(750, 63 + implementaJtextField, 478, 35);
+            j_.setBounds(750, 63 + implementaJtextField, 200, 35);
+        }
+        if (tipo == 5) {
+            j_.setBounds(1028, implementaJtextField - 18, 200, 35);
+            implementaJtextField = 81;
         }
         super.settingsTxt(j_, tipo);
     }
@@ -81,19 +100,30 @@ public class PanelMonografia extends PanelPrincipal{
                 try {
                     if (j_Titulo.getText().equals("")){
                         throw new IllegalArgumentException("Seu trabalho necessita de um Título");
-                    }else if (vetor_Autores[0] == null) {
-                        throw new IllegalArgumentException("É necessário informar ao menos um autor"); 
-                    }else if(vetor_Instituicoes[0] == null){
-                        throw new IllegalArgumentException("É necessário informar uma instituição ligada ao trabalho"); 
+                    }else if (j_Autores.getText().equals("")){
+                        throw new IllegalArgumentException("Sua monografia necessita de um autor");
+                    }else if (j_Instituicoes.getText().equals("")){
+                        throw new IllegalArgumentException("Sua monografia necessita de um instituicao");
                     }else if (vetor_PalavrasC[0] == null){
-                        throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
-                    }else if (j_Resumo.getText().equals("")){
-                        throw new IllegalArgumentException("Seu trabalho necessita de um Resumo");
-                    }else if (j_Abstract.getText().equals("")){
-                        throw new IllegalArgumentException("Your work needs an Abstract");
+                        throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada a sua monografia"); 
+                    }else if (j_Orientador.getText().equals("")){
+                        throw new IllegalArgumentException("Sua monografia necessita de um orientador");
+                    }else if (j_NumeroPaginas.getText().equals("")){
+                        throw new IllegalArgumentException("Qual o numero de paginas da sua monografia?");
+                    }else if (j_Curso.getText().equals("")){
+                        throw new IllegalArgumentException("Qual o curso referente ao seu trabalho?");
                     }else {
-                        //submissao = new Artigo(j_Titulo.getText(), Situacao.APROVADO, vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                        //listaSubmissao.incluir(submissao);
+                        TipoMonografia[] options2 = {TipoMonografia.MONOGRAFIA_CIENTIFICA,TipoMonografia.MONOGRAFIA_DE_COMPILACAO,TipoMonografia.MONOGRAFIA_DE_PESQUISA_DE_CAMPO};
+                        int y = JOptionPane.showOptionDialog(null, "Tipo da Monografia", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options2, null);
+                        Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
+                        int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
+                        vetor_Autores[0] = j_Autores.getText();
+                        vetor_Instituicoes[0] = j_Instituicoes.getText();
+                        int ano =  Integer.parseInt(j_Ano.getText()); 
+                        int numeroPaginas = Integer.parseInt(j_NumeroPaginas.getText());
+                        submissao = new Monografia(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, options2[y],j_Orientador.getText(), j_Curso.getText(),ano, numeroPaginas, j_Resumo.getText(), j_Abstract.getText());
+                        listaSubmissao.incluir(submissao);
+                        clearAllText();
                     }
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
@@ -107,10 +137,10 @@ public class PanelMonografia extends PanelPrincipal{
             if (implementaJtextField > 260) {
                 implementaJtextField = 0;
             }
-            b_add.setBounds(532 ,303 +implementaJtextField, 60, 35);
+            b_add.setBounds(532 ,142+ implementaJtextField, 60, 35);
             b_add.setFont(new Font("Muli", 4, 10));
         }else if (tipo == 2){
-            b_add.setBounds(1120 ,283 +implementaJtextField, 110, 35);
+            b_add.setBounds(1120 ,200+implementaJtextField, 110, 35);
             b_add.setFont(new Font("Muli", 4, 15));
         }
         b_add.setFocusPainted(false);
@@ -129,10 +159,33 @@ public class PanelMonografia extends PanelPrincipal{
             }
             l_.setBounds(750, 33 + implementaJlabels, 250, 30);
             //implementaJlabels += 81;
-        }
+        }else if (tipo == 4) {
+            l_.setBounds(750, 33 + implementaJlabels, 250, 30);
+        }else if (tipo == 3) {
+            l_.setBounds(1028,implementaJlabels - 45, 250, 30);
+            implementaJlabels -=81;
+        }        
         l_.setFont(new Font("Muli", 4, 23));
         l_.setForeground(cor.branco());
         add(l_);
         implementaJlabels += 81;
     }
+
+    protected void settingsTxtArea(JTextArea j_, int tipo){
+        if(implementaJtextField > 160){
+            implementaJtextField = 0;
+        }
+        if (tipo ==1) {
+            j_.setBounds(750, 223 + implementaJtextField, 478, 35);
+        }else if (tipo == 2) {
+            j_.setBounds(750, 223 + implementaJtextField, 478, 115);
+        }
+        j_.setFont(new Font("Muli", Font.PLAIN, 19));
+        j_.setBorder(null);
+        j_.setLineWrap(true);
+        j_.setWrapStyleWord(true);
+        add(j_);
+        implementaJtextField += 81;
+    }
+    
 }
