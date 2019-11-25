@@ -17,7 +17,7 @@ public class Janela implements ActionListener {
 
     public JFrame frame;
 
-    private JLabel lTitulo;
+    private JButton bTitulo;
 
     private JTextField tPesquisa;
     private JButton bPesquisa;
@@ -52,11 +52,13 @@ public class Janela implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        lTitulo = new JLabel("NiceArticle");
-        lTitulo.setBounds(600, 30, 200, 60);
-        lTitulo.setFont(new Font("Helvetica", Font.PLAIN, 35));
-        lTitulo.setForeground(new Color(10, 10, 10));
-        frame.getContentPane().add(lTitulo);
+        bTitulo = new JButton("NiceArticle");
+        bTitulo.setBounds(600, 30, 250, 60);
+        bTitulo.setFont(new Font("Helvetica", Font.PLAIN, 35));
+        bTitulo.setForeground(new Color(10, 10, 10));
+        bTitulo.setBorderPainted(false);
+        bTitulo.addActionListener(this);
+        frame.getContentPane().add(bTitulo);
 
         tPesquisa = new JTextField("");
         tPesquisa.setBounds(900, 30, 350, 50);
@@ -167,6 +169,18 @@ public class Janela implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == bTitulo) {
+
+            panelResumo.setVisible(false);
+            panelMinicursos.setVisible(false);
+            panelMonografia.setVisible(false);
+            panelRelatorioTecnico.setVisible(false);
+            panelPrinc.setVisible(false);
+            panelResultadoPesquisaAutor.setVisible(false);
+            scrollPane.setVisible(false);
+            panel.setVisible(true);
+        }
+
         if (ae.getSource() == bPesquisa) {
 
             panel.setVisible(false);
