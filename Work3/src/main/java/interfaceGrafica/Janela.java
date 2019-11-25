@@ -59,6 +59,7 @@ public class Janela implements ActionListener {
         bTitulo.setBorderPainted(false);
         bTitulo.addActionListener(this);
         frame.getContentPane().add(bTitulo);
+        
 
         tPesquisa = new JTextField("");
         tPesquisa.setBounds(900, 30, 350, 50);
