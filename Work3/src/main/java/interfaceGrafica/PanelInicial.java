@@ -68,10 +68,10 @@ public class PanelInicial extends PanelPrincipal {
         lTitulo.setForeground(cor.branco());
         add(lTitulo);
 
-        lAutor = new JLabel(" Autor");
+        lAutor = new JLabel(" Autor(es)");
         lAutor.setBounds(500, 100, 200, 60);
         lAutor.setFont(new Font("Muli", Font.PLAIN, 23));
-        lAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/user.png")));
+        lAutor.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/users.png")));
         lAutor.setForeground(cor.branco());
         add(lAutor);
 

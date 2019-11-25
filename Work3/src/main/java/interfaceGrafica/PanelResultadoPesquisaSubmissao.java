@@ -53,7 +53,7 @@ private JLabel lAll;
         l_Categoria = new JLabel(" Categoria");
         l_Categoria.setBounds(500, 100, 200, 60);
         l_Categoria.setFont(new Font("Muli", Font.PLAIN, 23));
-        l_Categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/user.png")));
+        l_Categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/attachment.png")));
         l_Categoria.setForeground(cor.branco());
         add(l_Categoria);
 
@@ -67,7 +67,7 @@ private JLabel lAll;
         l_Autores = new JLabel(" Autor(es)");
         l_Autores.setBounds(50, 260, 200, 60);
         l_Autores.setFont(new Font("Muli", Font.PLAIN, 23));
-        l_Autores.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/user.png")));
+        l_Autores.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/users.png")));
         l_Autores.setForeground(cor.branco());
         add(l_Autores);
 
