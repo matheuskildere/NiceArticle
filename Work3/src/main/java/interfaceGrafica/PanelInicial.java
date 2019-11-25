@@ -2,6 +2,12 @@ package interfaceGrafica;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
+
+import Enumeracao.Situacao;
+import categoria.Artigo;
+import classes.Submissao;
+
 import java.awt.Font;
 
 /**
@@ -9,6 +15,8 @@ import java.awt.Font;
  */
 public class PanelInicial extends PanelPrincipal {
 
+
+    JPanel panelResultados;
 
     private JLabel labelAll;
     private JComboBox cbFiltroTipo;
@@ -19,21 +27,24 @@ public class PanelInicial extends PanelPrincipal {
     private JLabel lSituacao;
 
     private JButton bEditar;
+    private JButton bFiltrar;
     private JButton bExcluir;
-
+    
     private JLabel init_Titulo;
     private JLabel init_Autor;
     private JLabel init_Categoria;
     private int lab = 0;
-
-   
- 
+    private int labB = 0;
+    
+    
+    
     private static final long serialVersionUID = 1L;
-
+    
     public PanelInicial() {
         removeAll();
-
-
+        
+        
+        
         labelAll = new JLabel(" Filtros");
         labelAll.setBounds(50, 10, 200, 60);
         labelAll.setFont(new Font("Muli", Font.PLAIN, 20));
@@ -42,7 +53,7 @@ public class PanelInicial extends PanelPrincipal {
         add(labelAll);   
 
         cbFiltroTipo = new JComboBox<>();
-        cbFiltroTipo.setBounds(140, 10, 100, 60);
+        cbFiltroTipo.setBounds(140, 10, 100, 40);
         cbFiltroTipo.setFont(new Font("Muli", Font.PLAIN, 15));
         cbFiltroTipo.addItem("Todos");
         cbFiltroTipo.addItem("Artigo");
@@ -54,13 +65,22 @@ public class PanelInicial extends PanelPrincipal {
         add(cbFiltroTipo);
 
         cbFiltroSituacao = new JComboBox<>();
-        cbFiltroSituacao.setBounds(250, 10, 100, 60);
+        cbFiltroSituacao.setBounds(250, 10, 100, 40);
         cbFiltroSituacao.setFont(new Font("Muli", Font.PLAIN, 15));
         cbFiltroSituacao.addItem("Todos");
         cbFiltroSituacao.addItem("Aprovados");
         cbFiltroSituacao.addItem("Sob Avaliação");
         cbFiltroSituacao.addItem("Reprovados");
         add(cbFiltroSituacao);
+
+        bFiltrar = new JButton("Filtrar");
+        bFiltrar.setBounds(360, 10, 100, 40);
+        bFiltrar.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent event) {
+                resultados();
+            }
+        });
+        add(bFiltrar);
 
         lTitulo = new JLabel(" Titulo");
         lTitulo.setBounds(50, 100, 200, 60);
@@ -83,76 +103,98 @@ public class PanelInicial extends PanelPrincipal {
         lSituacao.setForeground(cor.branco());
         add(lSituacao);
 
-        
+        vetor_Autores[0]= "matheus";
+        listaSubmissao.incluir(new Submissao("O bomzao fodao", Situacao.APROVADO, vetor_Autores, 1){});
+        listaSubmissao.incluir(new Submissao("queeee artigo é esse", Situacao.REPROVADO, vetor_Autores, 1){});
+
+        add(panelResultados());
+        resultados();
+        //labelsAndFields();
+    }
+
+    private void resultados(){
+        System.out.println(listaSubmissao.getLista().size());
+        int index = cbFiltroSituacao.getSelectedIndex();
+        System.out.println(index);
+        if (index == 2) {
+            panelResultados.removeAll();
+            for (Submissao submissao : listaSubmissao.getLista()) {
+                configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+                buttons();
+            }
+            panelResultados.repaint();
+        }else if (index == 1) {
+            panelResultados.removeAll();
+            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+                configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+            }
+            panelResultados.repaint();
+        }else if (index == 3) {
+            panelResultados.removeAll();
+            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+                configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+            }
+            panelResultados.repaint();
+        }else if (index == 1) {
+            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+                configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+            }
+        }
+    }
+
+    private void buttons(){
         bEditar = new JButton("  |");
-        bEditar.setBounds(1215,180,85,40);
+        bEditar.setBounds(1215,5 + labB,85,40);
         bEditar.setFont(new Font("Muli", Font.PLAIN, 26));
         bEditar.setBackground(cor.preto_Claro());
         bEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/edit.png")));
         bEditar.setBorderPainted(false);
         bEditar.setFocusPainted(false);
         //b_add.setBackground(cor.branco());
-        add(bEditar);
+        panelResultados.add(bEditar);
         
         bExcluir = new JButton("");
-        bExcluir.setBounds(1290,180,40,40);
+        bExcluir.setBounds(1290,5 + labB,40,40);
         bExcluir.setBackground(cor.preto_Claro());
         bExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/garbage.png")));
         bExcluir.setBorderPainted(false);
         bExcluir.setBorderPainted(false);
-        add(bExcluir);
+        panelResultados.add(bExcluir);
 
-
-
-
-        labelsAndFields();
+        labB+= 50;
     }
 
-    private void jComboBox() {
-     /*
-        comboBox = new JComboBox<>();
-        comboBox.setBounds(50, 450, 100, 100);
-        comboBox.setFont(new Font("Muli", Font.PLAIN, 19));
-        comboBox.setBorder(null);
-        add(comboBox);
+    private JPanel panelResultados(){
+        panelResultados = new JPanel();
+        panelResultados.setBounds(0, 175, 1366, 600);
+        panelResultados.setBackground(cor.preto_Claro());
+        panelResultados.getComponentPopupMenu();
+        panelResultados.setLayout(null);
+        panelResultados.setVisible(true);
 
-        */
+        return panelResultados;
     }
 
-    @Override
-    protected void labelsAndFields() {
-
-        settingsLabels(init_Titulo, "Inteligência Artificial na sociedade", 1);
-        settingsLabels(init_Autor, "Matheus Kildere", 2);
-        settingsLabels(init_Categoria, "Aprovado", 3);
-
-        settingsLabels(init_Titulo, "Não sei", 1);
-        settingsLabels(init_Autor, "Brandow Buenos", 2);
-        settingsLabels(init_Categoria, "Em análise", 3);
-
-        settingsLabels(init_Titulo, "A importância das capivaras", 1);
-        settingsLabels(init_Autor, "Willian Clemente", 2);
-        settingsLabels(init_Categoria, "Reprovado", 3);
-
-        settingsLabels(init_Titulo, "Inteligência Artificial", 1);
-        settingsLabels(init_Autor, "Matheus Kildere", 2);
-        settingsLabels(init_Categoria, "Aprovado", 3);
+    private void configuraResultado(String titulo, String autor, String situacao){
+        settingsLabels(init_Titulo, titulo, 1, panelResultados);
+        settingsLabels(init_Autor, autor, 2, panelResultados);
+        settingsLabels(init_Categoria, situacao, 3,panelResultados);
     }
 
-    @Override
-    protected void settingsLabels(JLabel l_, String nome, int tipo) {
+    //@Override
+    protected void settingsLabels(JLabel l_, String nome, int tipo, JPanel panel) {
         l_ = new JLabel(nome);
         l_.setFont(new Font("Muli", 4, 20));
         l_.setForeground(cor.branco());
         if (tipo == 1) {
-            l_.setBounds(50, lab + 180, 400, 30);
+            l_.setBounds(50, lab + 10, 400, 30);
         } else if (tipo == 2) {
-            l_.setBounds(500, lab + 180, 400, 30);
+            l_.setBounds(500, lab + 10, 400, 30);
         } else if (tipo == 3) {
-            l_.setBounds(950, 180 + lab, 400, 30);
+            l_.setBounds(950, 10 + lab, 400, 30);
             lab += 50;
         }
-        add(l_);
+        panel.add(l_);
     }
 
 }
