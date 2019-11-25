@@ -1,6 +1,8 @@
 package interfaceGrafica;
 
 import java.awt.*;
+
+import java.awt.Font;
 import javax.swing.*;
 
 /**
