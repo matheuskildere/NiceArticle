@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Enumeracao.Situacao;
+
 /**
  * PanelResumo
  */
@@ -154,5 +156,73 @@ public class PanelRelatorioTecnico extends PanelPrincipal{
         l_.setForeground(cor.branco());
         add(l_);
         implementaJlabels += 81;
+    }
+
+    protected ActionListener actionPerformed(JButton b){
+        if (b == b_addAutores) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    boolean conseguiu = false;
+                    boolean avisou = false;
+                    for (int i = 0; i < vetor_Autores.length; i++) {
+                        if (vetor_Autores[i] == null && !conseguiu) {
+                            vetor_Autores[i] = j_Autores.getText();
+                            conseguiu = true;
+                        } else if(vetor_Autores[vetor_Autores.length -1] != null && !avisou){
+                            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de autores (8)!");
+                            avisou = true;
+                        }
+                    }
+                }
+            }; 
+        }
+        if (b == b_addPalavrasC) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    boolean conseguiu = false;
+                    boolean avisou = false;
+                    for (int i = 0; i < vetor_PalavrasC.length; i++) {
+                        if (vetor_PalavrasC[i] == null && !conseguiu) {
+                            vetor_PalavrasC[i] = j_PalavrasC.getText();
+                            conseguiu = true;
+                        } else if(vetor_PalavrasC[vetor_PalavrasC.length -1] != null && !avisou){
+                            JOptionPane.showMessageDialog(null, "Você atingiu o número máximo de Palavras Chaves (8)!");
+                            avisou = true;
+                        }
+                    }
+                } 
+            };
+        }
+        if (b == b_submeter) {
+            return new ActionListener() { 
+                public void actionPerformed(ActionEvent event) {
+                    try {
+                        if (j_Titulo.getText().equals("")){
+                            throw new IllegalArgumentException("Seu trabalho necessita de um Título");
+                        }else if (vetor_Autores[0] == null) {
+                            throw new IllegalArgumentException("É necessário informar ao menos um autor"); 
+                        }else if(vetor_Instituicoes[0] == null){
+                            throw new IllegalArgumentException("É necessário informar uma instituição ligada ao trabalho"); 
+                        }else if (vetor_PalavrasC[0] == null){
+                            throw new IllegalArgumentException("Coloque ao menos uma palavra chave relacionada ao seu trabalho"); 
+                        }else if (j_Resumo.getText().equals("")){
+                            throw new IllegalArgumentException("Seu trabalho necessita de um Resumo");
+                        }else if (j_Abstract.getText().equals("")){
+                            throw new IllegalArgumentException("Your work needs an Abstract");
+                        }else {
+                            Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
+                            int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
+                            //submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
+                            //listaSubmissao.incluir(submissao);
+                            clearAllText();
+                            System.out.println(listaSubmissao.consultarTitulo("nice").toString());
+                        }
+                    } catch (IllegalArgumentException e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                } 
+            };
+        }
+        return null;
     }
 }
