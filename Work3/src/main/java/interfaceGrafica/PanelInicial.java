@@ -2,6 +2,7 @@ package interfaceGrafica;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.Font;
 
 /**
  * PanelInicial
@@ -84,16 +85,18 @@ public class PanelInicial extends PanelPrincipal {
 
         
         bEditar = new JButton("  |");
-        bEditar.setBounds(1215,180,80,40);
+        bEditar.setBounds(1215,180,85,40);
         bEditar.setFont(new Font("Muli", Font.PLAIN, 26));
-        bEditar.setForeground(cor.branco());
+        bEditar.setBackground(cor.preto_Claro());
         bEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/edit.png")));
         bEditar.setBorderPainted(false);
         bEditar.setFocusPainted(false);
+        //b_add.setBackground(cor.branco());
         add(bEditar);
         
         bExcluir = new JButton("");
         bExcluir.setBounds(1290,180,40,40);
+        bExcluir.setBackground(cor.preto_Claro());
         bExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/garbage.png")));
         bExcluir.setBorderPainted(false);
         bExcluir.setBorderPainted(false);

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import Enumeracao.Situacao;
+import categoria.Palestra;
 
 /**
  * PanelResumo
@@ -129,8 +130,10 @@ public class PanelPalestra extends PanelPrincipal{
                         }else {
                             Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
                             int x = JOptionPane.showOptionDialog(null, "Situacao da Submissao", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
-                            //submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                            //listaSubmissao.incluir(submissao);
+                            int duracao = Integer.parseInt(j_Duracao.getText());
+                            submissao = new Palestra(j_Titulo.getText(), options[x], vetor_Autores, j_Resumo.getText(),j_Abstract.getText(), duracao, j_Curriculo.getText());
+                            listaSubmissao.incluir(submissao);
+                            clearAllText();
                         }
                     } catch (IllegalArgumentException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
