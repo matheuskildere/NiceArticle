@@ -256,7 +256,6 @@ public class PanelPrincipal extends JPanel {
                             submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
                             listaSubmissao.incluir(submissao);
                             clearAllText();
-                            System.out.println(listaSubmissao.consultarTitulo("nice").toString());
                         }
                     } catch (IllegalArgumentException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());

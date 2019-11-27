@@ -107,11 +107,7 @@ public class PanelInicial extends PanelPrincipal {
         lSituacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/situation.png")));
         lSituacao.setForeground(cor.branco());
         add(lSituacao);
-
-        vetor_Autores[0]= "matheus";
-        listaSubmissao.incluir(new Submissao("O bomzao fodao", Situacao.APROVADO, vetor_Autores, 1){});
-        listaSubmissao.incluir(new Submissao("queeee artigo é esse", Situacao.REPROVADO, vetor_Autores, 1){});
-
+        
         add(panelResultados());
         resultados();
     }
