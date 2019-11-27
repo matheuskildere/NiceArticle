@@ -107,12 +107,12 @@ public class PanelInicial extends PanelPrincipal {
         lSituacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/situation.png")));
         lSituacao.setForeground(cor.branco());
         add(lSituacao);
-        
+
         add(panelResultados());
         resultados();
     }
 
-    private void resultados(){
+    protected void resultados(){
         lab = 0;
         labB = 0;
         Object situacao =  cbFiltroSituacao.getSelectedItem();

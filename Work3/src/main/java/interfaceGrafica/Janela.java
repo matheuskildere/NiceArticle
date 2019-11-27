@@ -173,7 +173,7 @@ public class Janela implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == bTitulo) {
-
+            panel.resultados();
             panelResumo.setVisible(false);
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
