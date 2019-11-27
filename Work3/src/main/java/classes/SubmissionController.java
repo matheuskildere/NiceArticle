@@ -3,6 +3,13 @@ package classes;
 import java.util.ArrayList;
 import java.util.List;
 
+import Enumeracao.Situacao;
+import categoria.Artigo;
+import categoria.Minicurso;
+import categoria.Monografia;
+import categoria.Palestra;
+import categoria.RelatorioTecnico;
+import categoria.Resumo;
 import interfaces.ISubmissoes;
 
 /**
@@ -14,6 +21,16 @@ public class SubmissionController implements ISubmissoes {
     @Override
     public boolean incluir(Submissao submission) {
         return listaSubmi.add(submission);
+    }
+
+    public ArrayList<Submissao> getLista() {
+        ArrayList<Submissao> submissoes = new ArrayList<>();
+        
+        for (Submissao submissao : listaSubmi) {
+               submissoes.add(submissao);
+        }
+
+        return submissoes;
     }
 
     @Override
@@ -42,6 +59,45 @@ public class SubmissionController implements ISubmissoes {
         return submissoesAutor;
     }
 
+    
+    public List<Submissao> consultarCategoria(String categoriaName) {
+        List<Submissao> submissoesCategoria = new ArrayList<>();
+
+        for (Submissao submissao : listaSubmi) {
+            if (submissao.getClass().getSimpleName().equals(categoriaName)){
+               submissoesCategoria.add(submissao);
+            }
+        }
+
+        return submissoesCategoria;
+    }
+
+    public List<Submissao> consultarSituacao(Situacao situacao) {
+        List<Submissao> submissoesSituacao = new ArrayList<>();
+        
+        for (Submissao submissao : listaSubmi) {
+            if (submissao.getSituacaoSubmissao().equals(situacao)){
+               submissoesSituacao.add(submissao);
+            }
+        }
+
+        return submissoesSituacao;
+    }
+
+    public List<Submissao> consultaSituCat(String categoriaName, Situacao situacao) {
+        List<Submissao> submissoesSituCat = new ArrayList<>();
+        
+        for (Submissao submissaoSitu : consultarSituacao(situacao)) {
+            for (Submissao submissaoCat : consultarCategoria(categoriaName)) {
+                if (submissaoSitu.equals(submissaoCat)) {
+                    submissoesSituCat.add(submissaoCat);
+                }
+            }
+        }
+
+        return submissoesSituCat;
+    }
+
     @Override
     public boolean excluir(String titulo) {
         for (Submissao submissao : listaSubmi) {
@@ -53,5 +109,12 @@ public class SubmissionController implements ISubmissoes {
         return false;
     }
 
-    
+    @Override
+    public String toString() {
+        String lista= "";
+        for (Submissao submissao : listaSubmi) {
+            lista += submissao.tituloSubmissao+ "\n";
+        }
+        return lista;
+    }
 }

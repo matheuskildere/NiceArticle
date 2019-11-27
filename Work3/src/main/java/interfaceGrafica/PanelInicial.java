@@ -6,6 +6,11 @@ import java.awt.event.*;
 
 import Enumeracao.Situacao;
 import categoria.Artigo;
+import categoria.Minicurso;
+import categoria.Monografia;
+import categoria.Palestra;
+import categoria.RelatorioTecnico;
+import categoria.Resumo;
 import classes.Submissao;
 
 import java.awt.Font;
@@ -56,21 +61,21 @@ public class PanelInicial extends PanelPrincipal {
         cbFiltroTipo.setBounds(140, 10, 100, 40);
         cbFiltroTipo.setFont(new Font("Muli", Font.PLAIN, 15));
         cbFiltroTipo.addItem("Todos");
-        cbFiltroTipo.addItem("Artigo");
-        cbFiltroTipo.addItem("Resumo");
-        cbFiltroTipo.addItem("Palestra");
-        cbFiltroTipo.addItem("Mini Curso");
-        cbFiltroTipo.addItem("Monografia");
-        cbFiltroTipo.addItem("Relatório técnico");
+        cbFiltroTipo.addItem(Artigo.class.getSimpleName());
+        cbFiltroTipo.addItem(Resumo.class.getSimpleName());
+        cbFiltroTipo.addItem(Palestra.class.getSimpleName());
+        cbFiltroTipo.addItem(Minicurso.class.getSimpleName());
+        cbFiltroTipo.addItem(Monografia.class.getSimpleName());
+        cbFiltroTipo.addItem(RelatorioTecnico.class.getSimpleName());
         add(cbFiltroTipo);
 
         cbFiltroSituacao = new JComboBox<>();
         cbFiltroSituacao.setBounds(250, 10, 100, 40);
         cbFiltroSituacao.setFont(new Font("Muli", Font.PLAIN, 15));
         cbFiltroSituacao.addItem("Todos");
-        cbFiltroSituacao.addItem("Aprovados");
-        cbFiltroSituacao.addItem("Sob Avaliação");
-        cbFiltroSituacao.addItem("Reprovados");
+        cbFiltroSituacao.addItem(Situacao.APROVADO);
+        cbFiltroSituacao.addItem(Situacao.SOB_AVALIACAO);
+        cbFiltroSituacao.addItem(Situacao.REPROVADO);
         add(cbFiltroSituacao);
 
         bFiltrar = new JButton("Filtrar");
@@ -109,36 +114,41 @@ public class PanelInicial extends PanelPrincipal {
 
         add(panelResultados());
         resultados();
-        //labelsAndFields();
     }
 
     private void resultados(){
-        System.out.println(listaSubmissao.getLista().size());
-        int index = cbFiltroSituacao.getSelectedIndex();
-        System.out.println(index);
-        if (index == 2) {
+        lab = 0;
+        labB = 0;
+        Object situacao =  cbFiltroSituacao.getSelectedItem();
+        Object categoria =  cbFiltroTipo.getSelectedItem();
+        if (situacao == "Todos" && categoria == "Todos") {
             panelResultados.removeAll();
             for (Submissao submissao : listaSubmissao.getLista()) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
                 buttons();
             }
             panelResultados.repaint();
-        }else if (index == 1) {
+        }else if (situacao != "Todos" && categoria == "Todos") {
             panelResultados.removeAll();
-            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+            for (Submissao submissao : listaSubmissao.consultarSituacao((Situacao)situacao)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+                buttons();
             }
             panelResultados.repaint();
-        }else if (index == 3) {
+        }else if (situacao == "Todos" && categoria != "Todos") {
             panelResultados.removeAll();
-            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+            for (Submissao submissao : listaSubmissao.consultarCategoria((String)categoria)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+                buttons();
             }
             panelResultados.repaint();
-        }else if (index == 1) {
-            for (Submissao submissao : listaSubmissao.consultarCategoria(Artigo.class)) {
+        }else{
+            panelResultados.removeAll();
+            for (Submissao submissao : listaSubmissao.consultaSituCat((String)categoria,(Situacao)situacao)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
+                buttons();
             }
+            panelResultados.repaint();
         }
     }
 
