@@ -58,7 +58,7 @@ public class PanelPrincipal extends JPanel {
     protected JLabel l_Resumo;
     protected JLabel l_Abstract;
     
-    protected SubmissionController listaSubmissao = new SubmissionController();
+    protected static SubmissionController listaSubmissao = new SubmissionController();
     protected Submissao submissao;
     protected String [] vetor_Autores= new String[8];
     protected String [] vetor_Instituicoes= new String[8];

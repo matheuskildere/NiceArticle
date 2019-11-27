@@ -58,6 +58,8 @@ public class Janela implements ActionListener {
         bTitulo.setForeground(new Color(10, 10, 10));
         bTitulo.setBorderPainted(false);
         bTitulo.addActionListener(this);
+        bTitulo.setFocusPainted(false);
+        bTitulo.setBackground(cor.branco());
         frame.getContentPane().add(bTitulo);
         
 
@@ -179,6 +181,7 @@ public class Janela implements ActionListener {
             panelPrinc.setVisible(false);
             panelResultadoPesquisaAutor.setVisible(false);
             scrollPane.setVisible(false);
+            panelPalestra.setVisible(false);
             panel.setVisible(true);
         }
 
@@ -190,6 +193,7 @@ public class Janela implements ActionListener {
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
             panelPrinc.setVisible(false);
+            panelPalestra.setVisible(false);
             panelResultadoPesquisaAutor.setVisible(false);
             scrollPane.setVisible(true);
 

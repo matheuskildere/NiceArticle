@@ -125,34 +125,36 @@ public class PanelInicial extends PanelPrincipal {
             panelResultados.removeAll();
             for (Submissao submissao : listaSubmissao.getLista()) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
-                buttons();
+                buttons(submissao);
             }
             panelResultados.repaint();
         }else if (situacao != "Todos" && categoria == "Todos") {
             panelResultados.removeAll();
             for (Submissao submissao : listaSubmissao.consultarSituacao((Situacao)situacao)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
-                buttons();
+                buttons(submissao);
             }
             panelResultados.repaint();
         }else if (situacao == "Todos" && categoria != "Todos") {
             panelResultados.removeAll();
             for (Submissao submissao : listaSubmissao.consultarCategoria((String)categoria)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
-                buttons();
+                buttons(submissao);
             }
             panelResultados.repaint();
         }else{
             panelResultados.removeAll();
             for (Submissao submissao : listaSubmissao.consultaSituCat((String)categoria,(Situacao)situacao)) {
                 configuraResultado(submissao.getTituloSubmissao(), submissao.getAutoresSubmissao()[0], submissao.getSituacaoSubmissao().name());
-                buttons();
+                buttons(submissao);
             }
             panelResultados.repaint();
         }
     }
 
-    private void buttons(){
+    private void buttons(Submissao sub){
+        final Submissao teste = sub;
+
         bEditar = new JButton("  |");
         bEditar.setBounds(1215,5 + labB,85,40);
         bEditar.setFont(new Font("Muli", Font.PLAIN, 26));
@@ -161,6 +163,11 @@ public class PanelInicial extends PanelPrincipal {
         bEditar.setBorderPainted(false);
         bEditar.setFocusPainted(false);
         //b_add.setBackground(cor.branco());
+        bEditar.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showMessageDialog(null, "oi " + teste.getTituloSubmissao());
+            }
+        });
         panelResultados.add(bEditar);
         
         bExcluir = new JButton("");
@@ -189,6 +196,10 @@ public class PanelInicial extends PanelPrincipal {
         settingsLabels(init_Titulo, titulo, 1, panelResultados);
         settingsLabels(init_Autor, autor, 2, panelResultados);
         settingsLabels(init_Categoria, situacao, 3,panelResultados);
+    }
+
+    private void botao(){
+
     }
 
     //@Override
