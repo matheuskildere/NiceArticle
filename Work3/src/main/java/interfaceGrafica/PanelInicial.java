@@ -109,7 +109,11 @@ public class PanelInicial extends PanelPrincipal {
         resultados();
     }
 
+<<<<<<< HEAD
     private void resultados() {
+=======
+    protected void resultados(){
+>>>>>>> 863d985f0295ee7129aade400bf9f29b8b5c2058
         lab = 0;
         labB = 0;
         Object situacao = cbFiltroSituacao.getSelectedItem();
