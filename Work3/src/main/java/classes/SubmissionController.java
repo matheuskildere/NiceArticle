@@ -98,6 +98,8 @@ public class SubmissionController implements ISubmissoes {
         return submissoesSituCat;
     }
 
+
+
     @Override
     public boolean excluir(String titulo) {
         for (Submissao submissao : listaSubmi) {

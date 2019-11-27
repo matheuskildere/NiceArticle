@@ -152,6 +152,7 @@ private JLabel lAll;
 
 
         labelsAndFields();
+
     }
 
     private void jComboBox() {

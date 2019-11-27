@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.Font;
 
 import Color.Colors;
+import classes.SubmissionController;
 
 import java.awt.event.*;
 
@@ -30,7 +31,6 @@ public class Janela implements ActionListener {
     private JButton bRelatorioTecnico;
 
     private Colors cor = new Colors();
-    JScrollPane scrollPane;
     public PanelInicial panel = new PanelInicial();
     public PanelMonografia panelMonografia = new PanelMonografia();
     public PanelPrincipal panelPrinc = new PanelPrincipal();
@@ -40,6 +40,8 @@ public class Janela implements ActionListener {
     public PanelRelatorioTecnico panelRelatorioTecnico = new PanelRelatorioTecnico();
     public PanelResultadoPesquisaAutor panelResultadoPesquisaAutor = new PanelResultadoPesquisaAutor();
     public PanelResultadoPesquisaSubmissao panelResultadoPesquisaSubmissao = new PanelResultadoPesquisaSubmissao();
+
+    public SubmissionController listaSubmissao = new SubmissionController();
 
     public Janela() {
 
@@ -61,7 +63,6 @@ public class Janela implements ActionListener {
         bTitulo.setFocusPainted(false);
         bTitulo.setBackground(cor.branco());
         frame.getContentPane().add(bTitulo);
-        
 
         tPesquisa = new JTextField("");
         tPesquisa.setBounds(900, 30, 350, 50);
@@ -141,11 +142,6 @@ public class Janela implements ActionListener {
         bRelatorioTecnico.setBorderPainted(false);
         bRelatorioTecnico.setBackground(cor.branco());
 
-        scrollPane = new JScrollPane();
-        scrollPane.setBounds(0, 175, 1366, 800);
-        scrollPane.setViewportView(panelResultadoPesquisaSubmissao);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-
         frame.getContentPane().add(bRelatorioTecnico);
         frame.getContentPane().add(panelPrinc);
         frame.getContentPane().add(panelResumo);
@@ -154,7 +150,7 @@ public class Janela implements ActionListener {
         frame.getContentPane().add(panelMonografia);
         frame.getContentPane().add(panelRelatorioTecnico);
         frame.getContentPane().add(panelResultadoPesquisaAutor);
-        frame.getContentPane().add(scrollPane);
+        frame.getContentPane().add(panelResultadoPesquisaSubmissao);
         frame.getContentPane().add(panel);
 
         panel.setVisible(true);
@@ -165,7 +161,7 @@ public class Janela implements ActionListener {
         panelMonografia.setVisible(false);
         panelRelatorioTecnico.setVisible(false);
         panelResultadoPesquisaAutor.setVisible(false);
-        scrollPane.setVisible(false);
+        panelResultadoPesquisaSubmissao.setVisible(false);
 
         frame.setVisible(true);
 
@@ -180,22 +176,36 @@ public class Janela implements ActionListener {
             panelRelatorioTecnico.setVisible(false);
             panelPrinc.setVisible(false);
             panelResultadoPesquisaAutor.setVisible(false);
-            scrollPane.setVisible(false);
             panelPalestra.setVisible(false);
             panel.setVisible(true);
         }
 
         if (ae.getSource() == bPesquisa) {
 
-            panel.setVisible(false);
-            panelResumo.setVisible(false);
-            panelMinicursos.setVisible(false);
-            panelMonografia.setVisible(false);
-            panelRelatorioTecnico.setVisible(false);
-            panelPrinc.setVisible(false);
-            panelPalestra.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            scrollPane.setVisible(true);
+            if (listaSubmissao.consultarTitulo(tPesquisa.getText()) != null) {
+                panel.setVisible(false);
+                panelResumo.setVisible(false);
+                panelMinicursos.setVisible(false);
+                panelMonografia.setVisible(false);
+                panelRelatorioTecnico.setVisible(false);
+                panelPrinc.setVisible(false);
+                panelPalestra.setVisible(false);
+                panelResultadoPesquisaAutor.setVisible(false);
+                panelResultadoPesquisaSubmissao.setVisible(true);
+
+            } else if (listaSubmissao.consultarAutor(tPesquisa.getText()) != null) {
+                panel.setVisible(false);
+                panelResumo.setVisible(false);
+                panelMinicursos.setVisible(false);
+                panelMonografia.setVisible(false);
+                panelRelatorioTecnico.setVisible(false);
+                panelPrinc.setVisible(false);
+                panelPalestra.setVisible(false);
+                panelResultadoPesquisaSubmissao.setVisible(false);
+                panelResultadoPesquisaAutor.setVisible(true);
+            } else {
+                System.out.println("nada cadastrado");
+            }
 
         }
 

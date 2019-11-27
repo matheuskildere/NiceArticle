@@ -79,6 +79,7 @@ public class PanelPrincipal extends JPanel {
         setVisible(true);
     }
 
+
     protected void buttonsAdd(){
         b_addAutores = new JButton("add");
         settingsButtons(b_addAutores,1);
