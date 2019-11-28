@@ -15,17 +15,15 @@ public class Dados {
     private String diretorio;
 
     public Dados(Submissao sub,String tipo) {
-        diretorio = "./Arquivos/" + tipo + ".csv";
+        diretorio = "./Work3/Arquivos/" + tipo + ".csv";
         
         if (!verificaExistencia()) {
-            System.out.println("qq");
             configuracaoInicial();
             criaArquivo(tipo);
             insereLinha(sub);
         } else {
             configuracaoInicial();
             insereLinha(sub);
-            System.out.println("sla");
         }
         configuracaoFinal();        
     }
@@ -39,6 +37,7 @@ public class Dados {
     private void configuracaoInicial() {
         try {
             writer = new FileWriter(diretorio, true);
+            writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,8 +47,11 @@ public class Dados {
     private void insereLinha(Submissao sub){
         String autores = "";
         for(String autor: sub.getAutoresSubmissao()){
-            autores += autor +"\n";
+            if (autor != null) {
+                autores += autor +" - ";
+            }
         }
+        autores = autores.substring(0, autores.length() -1);
 
         try {
             writer.append("\n"+sub.getTituloSubmissao()+";"+sub.getSituacaoSubmissao()+";"+autores+";");
@@ -72,9 +74,7 @@ public class Dados {
 
         try {
             if (tipo == "Artigo") {
-                System.out.println("oi");
                 writer.write("Titulo;Situacao;Autor;Instituicao;Palavra-chave;Resumo;Abstract");
-                //writer.append("maks");
             } else if (tipo == "Resumo") {
                 writer.write("Titulo;Situacao;Autor;Instituicao;Palavra-chave");
             } else if (tipo == "Palestra") {

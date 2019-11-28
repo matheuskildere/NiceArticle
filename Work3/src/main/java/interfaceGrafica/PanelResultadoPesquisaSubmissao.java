@@ -156,17 +156,6 @@ private JLabel lAll;
 
     }
 
-    private void jComboBox() {
-     /*
-        comboBox = new JComboBox<>();
-        comboBox.setBounds(50, 450, 100, 100);
-        comboBox.setFont(new Font("Muli", Font.PLAIN, 19));
-        comboBox.setBorder(null);
-        add(comboBox);
-
-        */
-    }
-
     @Override
     protected void labelsAndFields() {
 
@@ -190,6 +179,10 @@ private JLabel lAll;
             lab += 50;
         }
         add(l_);
+    }
+
+    protected void recebePesquisa(String pesquisa){
+
     }
 
 }
