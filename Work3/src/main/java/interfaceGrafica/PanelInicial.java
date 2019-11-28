@@ -109,11 +109,7 @@ public class PanelInicial extends PanelPrincipal {
         resultados();
     }
 
-<<<<<<< HEAD
-    private void resultados() {
-=======
     protected void resultados(){
->>>>>>> 863d985f0295ee7129aade400bf9f29b8b5c2058
         lab = 0;
         labB = 0;
         Object situacao = cbFiltroSituacao.getSelectedItem();
@@ -253,6 +249,7 @@ public class PanelInicial extends PanelPrincipal {
     }
 
     private void configuraResultado(String titulo, String autor, String situacao) {
+        System.out.println("configurando");
         settingsLabels(init_Titulo, titulo, 1, panelResultados);
         settingsLabels(init_Autor, autor, 2, panelResultados);
         settingsLabels(init_Categoria, situacao, 3, panelResultados);
