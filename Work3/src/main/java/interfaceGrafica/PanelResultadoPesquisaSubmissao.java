@@ -5,14 +5,15 @@ import java.awt.*;
 import java.awt.Font;
 import javax.swing.*;
 
+import classes.Submissao;
 
 /**
  * PanelInicial
  */
 public class PanelResultadoPesquisaSubmissao extends PanelPrincipal {
 
-private JLabel lAll;
-    
+    private JLabel lAll;
+
     private JLabel lTitulo;
     private JLabel lAutor;
     private JLabel lSituacao;
@@ -23,17 +24,22 @@ private JLabel lAll;
     private JLabel init_Titulo;
     private JLabel init_Autor;
     private JLabel init_Categoria;
-    private int lab = 0; 
- 
+    private int lab = 0;
+
     private static final long serialVersionUID = 1L;
 
-    public PanelResultadoPesquisaSubmissao() {
+    private String pesquisa;
+
+    public PanelResultadoPesquisaSubmissao(String termo) {
         removeAll();
+
+        pesquisa = termo;
 
         setBounds(0, 175, 1366, 800);
 
-        
-        lAll = new JLabel("  Resultado da pesquisa: tPesquisa.getText()");
+        Submissao s = listaSubmissao.consultarTitulo(pesquisa);
+
+        lAll = new JLabel("  Resultado da pesquisa: " + pesquisa);
         lAll.setBounds(50, 10, 450, 60);
         lAll.setFont(new Font("Muli", Font.PLAIN, 20));
         lAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search1.png")));
@@ -47,7 +53,7 @@ private JLabel lAll;
         l_Titulo.setForeground(cor.branco());
         add(l_Titulo);
 
-        l_Titulo = new JLabel("resultado.getTitulo()");
+        l_Titulo = new JLabel(s.getTituloSubmissao());
         l_Titulo.setBounds(50, 170, 400, 30);
         l_Titulo.setFont(new Font("Muli", 4, 20));
         l_Titulo.setForeground(cor.branco());
@@ -59,6 +65,7 @@ private JLabel lAll;
         l_Categoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/attachment.png")));
         l_Categoria.setForeground(cor.branco());
         add(l_Categoria);
+        
 
         lSituacao = new JLabel(" Situação");
         lSituacao.setBounds(1000, 100, 200, 60);
@@ -74,12 +81,20 @@ private JLabel lAll;
         l_Autores.setForeground(cor.branco());
         add(l_Autores);
 
-        l_Autores = new JLabel ("resultado.getAutores()");
+        String autores = "";
+        String[] sla = s.getAutoresSubmissao();
+        for (int i = 0; i < sla.length; i++) {
+            if (sla[i] != null) {
+                autores += sla[i] + " ,";
+            }
+        }
+
+        l_Autores = new JLabel(autores);
         l_Autores.setBounds(50, 330, 400, 30);
         l_Autores.setFont(new Font("Muli", 4, 20));
         l_Autores.setForeground(cor.branco());
         add(l_Autores);
-
+        
         l_Instituicoeseld = new JLabel(" Instituição");
         l_Instituicoeseld.setBounds(500, 260, 200, 60);
         l_Instituicoeseld.setFont(new Font("Muli", Font.PLAIN, 23));
@@ -87,7 +102,8 @@ private JLabel lAll;
         l_Instituicoeseld.setForeground(cor.branco());
         add(l_Instituicoeseld);
 
-        l_Instituicoeseld = new JLabel ("resultado.getInstituicoes()");
+ 
+        l_Instituicoeseld = new JLabel();
         l_Instituicoeseld.setBounds(500, 330, 400, 30);
         l_Instituicoeseld.setFont(new Font("Muli", 4, 20));
         l_Instituicoeseld.setForeground(cor.branco());
@@ -100,7 +116,7 @@ private JLabel lAll;
         l_PalavrasC.setForeground(cor.branco());
         add(l_PalavrasC);
 
-        l_PalavrasC = new JLabel ("resultado.getPalavrasChave()");
+        l_PalavrasC = new JLabel("resultado.getPalavrasChave()");
         l_PalavrasC.setBounds(1000, 330, 400, 30);
         l_PalavrasC.setFont(new Font("Muli", 4, 20));
         l_PalavrasC.setForeground(cor.branco());
@@ -113,7 +129,7 @@ private JLabel lAll;
         l_Resumo.setForeground(cor.branco());
         add(l_Resumo);
 
-        l_Resumo = new JLabel ("Resultado.getResumo()");
+        l_Resumo = new JLabel();
         l_Resumo.setBounds(50, 570, 400, 30);
         l_Resumo.setFont(new Font("Muli", 4, 20));
         l_Resumo.setForeground(cor.branco());
@@ -126,31 +142,27 @@ private JLabel lAll;
         l_Abstract.setForeground(cor.branco());
         add(l_Abstract);
 
-        l_Abstract = new JLabel ("resultado.getAbstract()");
+        l_Abstract = new JLabel("");
         l_Abstract.setBounds(500, 570, 400, 30);
         l_Abstract.setFont(new Font("Muli", 4, 20));
         l_Abstract.setForeground(cor.branco());
         add(l_Abstract);
 
-        
         bEditar = new JButton("  |");
-        bEditar.setBounds(1215,20,80,40);
+        bEditar.setBounds(1215, 20, 80, 40);
         bEditar.setFont(new Font("Muli", Font.PLAIN, 26));
         bEditar.setForeground(cor.branco());
         bEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/edit.png")));
         bEditar.setBorderPainted(false);
         bEditar.setFocusPainted(false);
         add(bEditar);
-        
+
         bExcluir = new JButton("");
-        bExcluir.setBounds(1290,20,40,40);
+        bExcluir.setBounds(1290, 20, 40, 40);
         bExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/garbage.png")));
         bExcluir.setBorderPainted(false);
         bExcluir.setBorderPainted(false);
         add(bExcluir);
-
-
-
 
         labelsAndFields();
 
@@ -162,7 +174,6 @@ private JLabel lAll;
         settingsLabels(init_Autor, "Artigo", 2);
         settingsLabels(init_Categoria, "Aprovado", 3);
 
-      
     }
 
     @Override
@@ -181,8 +192,8 @@ private JLabel lAll;
         add(l_);
     }
 
-    protected void recebePesquisa(String pesquisa){
-
+    protected void recebePesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
     }
 
 }

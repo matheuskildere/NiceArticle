@@ -10,8 +10,8 @@ import javax.swing.*;
  */
 public class PanelResultadoPesquisaAutor extends PanelPrincipal {
 
-private JLabel lAll;
-    
+    private JLabel lAll;
+
     private JLabel lTitulo;
     private JLabel lAutor;
     private JLabel lSituacao;
@@ -24,13 +24,14 @@ private JLabel lAll;
     private JLabel init_Categoria;
     private int lab = 0;
 
-   
- 
     private static final long serialVersionUID = 1L;
 
-    public PanelResultadoPesquisaAutor() {
+    private String pesquisa;
+
+    public PanelResultadoPesquisaAutor(String termo) {
         removeAll();
 
+        pesquisa = termo;
 
         lAll = new JLabel("  Resultado da pesquisa: Matheus Kildere");
         lAll.setBounds(50, 30, 450, 60);
@@ -60,38 +61,32 @@ private JLabel lAll;
         lSituacao.setForeground(cor.branco());
         add(lSituacao);
 
-        
         bEditar = new JButton("  |");
-        bEditar.setBounds(1215,180,80,40);
+        bEditar.setBounds(1215, 180, 80, 40);
         bEditar.setFont(new Font("Muli", Font.PLAIN, 26));
         bEditar.setForeground(cor.branco());
         bEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/edit.png")));
         bEditar.setBorderPainted(false);
         bEditar.setFocusPainted(false);
         add(bEditar);
-        
+
         bExcluir = new JButton("");
-        bExcluir.setBounds(1290,180,40,40);
+        bExcluir.setBounds(1290, 180, 40, 40);
         bExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/garbage.png")));
         bExcluir.setBorderPainted(false);
         bExcluir.setBorderPainted(false);
         add(bExcluir);
 
-
-
-
         labelsAndFields();
     }
 
     private void jComboBox() {
-     /*
-        comboBox = new JComboBox<>();
-        comboBox.setBounds(50, 450, 100, 100);
-        comboBox.setFont(new Font("Muli", Font.PLAIN, 19));
-        comboBox.setBorder(null);
-        add(comboBox);
-
-        */
+        /*
+         * comboBox = new JComboBox<>(); comboBox.setBounds(50, 450, 100, 100);
+         * comboBox.setFont(new Font("Muli", Font.PLAIN, 19)); comboBox.setBorder(null);
+         * add(comboBox);
+         * 
+         */
     }
 
     @Override
@@ -130,7 +125,7 @@ private JLabel lAll;
         add(l_);
     }
 
-    protected void recebePesquisa(String pesquisa){
+    protected void recebePesquisa(String pesquisa) {
 
     }
 

@@ -37,8 +37,8 @@ public class Janela extends PanelPrincipal implements ActionListener {
     public PanelPalestra panelPalestra = new PanelPalestra();
     public PanelMinicursos panelMinicursos = new PanelMinicursos();
     public PanelRelatorioTecnico panelRelatorioTecnico = new PanelRelatorioTecnico();
-    public PanelResultadoPesquisaAutor panelResultadoPesquisaAutor = new PanelResultadoPesquisaAutor();
-    public PanelResultadoPesquisaSubmissao panelResultadoPesquisaSubmissao = new PanelResultadoPesquisaSubmissao();
+    public PanelResultadoPesquisaAutor panelResultadoPesquisaAutor;
+    public PanelResultadoPesquisaSubmissao panelResultadoPesquisaSubmissao;
 
     public Janela() {
 
@@ -146,8 +146,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
         frame.getContentPane().add(panelMinicursos);
         frame.getContentPane().add(panelMonografia);
         frame.getContentPane().add(panelRelatorioTecnico);
-        frame.getContentPane().add(panelResultadoPesquisaAutor);
-        frame.getContentPane().add(panelResultadoPesquisaSubmissao);
         frame.getContentPane().add(panel);
 
         panel.setVisible(true);
@@ -157,8 +155,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
         panelMinicursos.setVisible(false);
         panelMonografia.setVisible(false);
         panelRelatorioTecnico.setVisible(false);
-        panelResultadoPesquisaAutor.setVisible(false);
-        panelResultadoPesquisaSubmissao.setVisible(false);
 
         frame.setVisible(true);
 
@@ -172,7 +168,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
             panelPrinc.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
             panelPalestra.setVisible(false);
             panel.setVisible(true);
         }
@@ -189,9 +184,9 @@ public class Janela extends PanelPrincipal implements ActionListener {
                 panelRelatorioTecnico.setVisible(false);
                 panelPrinc.setVisible(false);
                 panelPalestra.setVisible(false);
-                panelResultadoPesquisaAutor.setVisible(false);
+                panelResultadoPesquisaSubmissao = new PanelResultadoPesquisaSubmissao(termo);
                 panelResultadoPesquisaSubmissao.setVisible(true);
-                panelResultadoPesquisaSubmissao.recebePesquisa(termo);
+                frame.getContentPane().add(panelResultadoPesquisaSubmissao);
 
             } else if (listaSubmissao.consultarAutor(termo).size() != 0) {
                 panel.setVisible(false);
@@ -201,16 +196,15 @@ public class Janela extends PanelPrincipal implements ActionListener {
                 panelRelatorioTecnico.setVisible(false);
                 panelPrinc.setVisible(false);
                 panelPalestra.setVisible(false);
-                panelResultadoPesquisaSubmissao.setVisible(false);
+                panelResultadoPesquisaAutor = new PanelResultadoPesquisaAutor(termo);
                 panelResultadoPesquisaAutor.setVisible(true);
-                panelResultadoPesquisaAutor.recebePesquisa(termo);
+                frame.getContentPane().add(panelResultadoPesquisaAutor);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum resultado foi encontrado !");
             }
 
         }
-
-    
 
         if (ae.getSource() == bArtigo) {
             panel.setVisible(false);
@@ -218,8 +212,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelPrinc.setVisible(true);
 
         }
@@ -230,8 +222,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelResumo.setVisible(true);
 
         }
@@ -243,8 +233,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelResumo.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelPalestra.setVisible(true);
         }
 
@@ -255,8 +243,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelPalestra.setVisible(false);
             panelMonografia.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelMinicursos.setVisible(true);
         }
 
@@ -267,8 +253,6 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelPalestra.setVisible(false);
             panelMinicursos.setVisible(false);
             panelRelatorioTecnico.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelMonografia.setVisible(true);
         }
 
@@ -279,12 +263,9 @@ public class Janela extends PanelPrincipal implements ActionListener {
             panelPalestra.setVisible(false);
             panelMinicursos.setVisible(false);
             panelMonografia.setVisible(false);
-            panelResultadoPesquisaAutor.setVisible(false);
-            panelResultadoPesquisaSubmissao.setVisible(false);
             panelRelatorioTecnico.setVisible(true);
         }
     }
-
 
     public void panelInicio(JPanel panel) {
         frame.add(panel);
