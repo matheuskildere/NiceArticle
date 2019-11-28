@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Enumeracao.Situacao;
+import Persistencia.Dados;
 import categoria.Artigo;
 import categoria.Minicurso;
 
@@ -135,6 +136,7 @@ public class PanelMinicursos extends PanelPrincipal{
                             int duracao = Integer.parseInt(j_Duracao.getText());
                             submissao = new Minicurso(j_Titulo.getText(),  options[x], vetor_Autores, j_Resumo.getText(), j_Abstract.getText(), duracao, j_Recursos.getText(), j_Metodologia.getText());
                             listaSubmissao.incluir(submissao);
+                            persistenciaCSV = new Dados(submissao, "Minicurso");
                             clearAllText();
                             System.out.println(listaSubmissao.consultarTitulo("nice").toString());
                         }

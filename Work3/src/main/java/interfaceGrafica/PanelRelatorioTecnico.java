@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Enumeracao.Situacao;
+import Persistencia.Dados;
+import categoria.RelatorioTecnico;
 
 /**
  * PanelResumo
@@ -212,8 +214,11 @@ public class PanelRelatorioTecnico extends PanelPrincipal{
                         }else {
                             Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
                             int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
-                            //submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
-                            //listaSubmissao.incluir(submissao);
+                            int ano = Integer.parseInt(j_Ano.getText());
+                            int nPaginas = Integer.parseInt(j_NumeroPaginas.getText());
+                            submissao = new RelatorioTecnico(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText(), ano, nPaginas);
+                            listaSubmissao.incluir(submissao);
+                            persistenciaCSV = new Dados(submissao, "RelatorioTecnico");
                             clearAllText();
                             System.out.println(listaSubmissao.consultarTitulo("nice").toString());
                         }

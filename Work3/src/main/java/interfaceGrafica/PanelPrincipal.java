@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 
 import Color.Colors;
 import Enumeracao.Situacao;
+import Persistencia.CSV;
+import Persistencia.Dados;
 import categoria.Artigo;
 import classes.Submissao;
 import classes.SubmissionController;
@@ -58,6 +60,7 @@ public class PanelPrincipal extends JPanel {
     protected JLabel l_Resumo;
     protected JLabel l_Abstract;
     
+    protected Dados persistenciaCSV;
     protected static SubmissionController listaSubmissao = new SubmissionController();
     protected Submissao submissao;
     protected String [] vetor_Autores= new String[8];
@@ -256,6 +259,7 @@ public class PanelPrincipal extends JPanel {
                             int x = JOptionPane.showOptionDialog(null, "Situação da Submissão", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
                             submissao = new Artigo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, j_Resumo.getText(), j_Abstract.getText());
                             listaSubmissao.incluir(submissao);
+                            persistenciaCSV = new Dados(submissao, "Artigo");
                             clearAllText();
                         }
                     } catch (IllegalArgumentException e) {

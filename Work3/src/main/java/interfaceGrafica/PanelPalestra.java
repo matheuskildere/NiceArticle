@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import Enumeracao.Situacao;
+import Persistencia.Dados;
 import categoria.Palestra;
 
 /**
@@ -133,6 +134,7 @@ public class PanelPalestra extends PanelPrincipal{
                             int duracao = Integer.parseInt(j_Duracao.getText());
                             submissao = new Palestra(j_Titulo.getText(), options[x], vetor_Autores, j_Resumo.getText(),j_Abstract.getText(), duracao, j_Curriculo.getText());
                             listaSubmissao.incluir(submissao);
+                            persistenciaCSV = new Dados(submissao, "Palestra");
                             clearAllText();
                         }
                     } catch (IllegalArgumentException e) {
