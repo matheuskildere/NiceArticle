@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.Font;
 
 import Color.Colors;
-import classes.SubmissionController;
 
 import java.awt.event.*;
 
@@ -14,7 +13,7 @@ import interfaceGrafica.PanelPrincipal;
 /**
  * Tela de ínicio
  */
-public class Janela implements ActionListener {
+public class Janela extends PanelPrincipal implements ActionListener {
 
     public JFrame frame;
 
@@ -40,8 +39,6 @@ public class Janela implements ActionListener {
     public PanelRelatorioTecnico panelRelatorioTecnico = new PanelRelatorioTecnico();
     public PanelResultadoPesquisaAutor panelResultadoPesquisaAutor = new PanelResultadoPesquisaAutor();
     public PanelResultadoPesquisaSubmissao panelResultadoPesquisaSubmissao = new PanelResultadoPesquisaSubmissao();
-
-    public SubmissionController listaSubmissao = new SubmissionController();
 
     public Janela() {
 
@@ -182,7 +179,9 @@ public class Janela implements ActionListener {
 
         if (ae.getSource() == bPesquisa) {
 
-            if (listaSubmissao.consultarTitulo(tPesquisa.getText()) != null) {
+            String termo = tPesquisa.getText();
+
+            if (listaSubmissao.consultarTitulo(termo) != null) {
                 panel.setVisible(false);
                 panelResumo.setVisible(false);
                 panelMinicursos.setVisible(false);
@@ -193,7 +192,7 @@ public class Janela implements ActionListener {
                 panelResultadoPesquisaAutor.setVisible(false);
                 panelResultadoPesquisaSubmissao.setVisible(true);
 
-            } else if (listaSubmissao.consultarAutor(tPesquisa.getText()) != null) {
+            } else if (listaSubmissao.consultarAutor(termo).size() != 0) {
                 panel.setVisible(false);
                 panelResumo.setVisible(false);
                 panelMinicursos.setVisible(false);
@@ -204,10 +203,12 @@ public class Janela implements ActionListener {
                 panelResultadoPesquisaSubmissao.setVisible(false);
                 panelResultadoPesquisaAutor.setVisible(true);
             } else {
-                System.out.println("nada cadastrado");
+                JOptionPane.showMessageDialog(null, "Nenhum resultado foi encontrado !");
             }
 
         }
+
+    
 
         if (ae.getSource() == bArtigo) {
             panel.setVisible(false);
@@ -281,6 +282,7 @@ public class Janela implements ActionListener {
             panelRelatorioTecnico.setVisible(true);
         }
     }
+
 
     public void panelInicio(JPanel panel) {
         frame.add(panel);
