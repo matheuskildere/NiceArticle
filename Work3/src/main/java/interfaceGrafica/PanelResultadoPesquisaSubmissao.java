@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.Font;
 import javax.swing.*;
 
+
 /**
  * PanelInicial
  */
@@ -22,9 +23,7 @@ private JLabel lAll;
     private JLabel init_Titulo;
     private JLabel init_Autor;
     private JLabel init_Categoria;
-    private int lab = 0;
-
-   
+    private int lab = 0; 
  
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +31,9 @@ private JLabel lAll;
         removeAll();
 
         setBounds(0, 175, 1366, 800);
-        lAll = new JLabel("  Resultado da pesquisa: Inteligência Artificial");
+
+        
+        lAll = new JLabel("  Resultado da pesquisa: tPesquisa.getText()");
         lAll.setBounds(50, 10, 450, 60);
         lAll.setFont(new Font("Muli", Font.PLAIN, 20));
         lAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/search1.png")));
@@ -46,7 +47,7 @@ private JLabel lAll;
         l_Titulo.setForeground(cor.branco());
         add(l_Titulo);
 
-        l_Titulo = new JLabel("Inteligência Artificial");
+        l_Titulo = new JLabel("resultado.getTitulo()");
         l_Titulo.setBounds(50, 170, 400, 30);
         l_Titulo.setFont(new Font("Muli", 4, 20));
         l_Titulo.setForeground(cor.branco());
@@ -73,7 +74,7 @@ private JLabel lAll;
         l_Autores.setForeground(cor.branco());
         add(l_Autores);
 
-        l_Autores = new JLabel ("Matheus Kildere");
+        l_Autores = new JLabel ("resultado.getAutores()");
         l_Autores.setBounds(50, 330, 400, 30);
         l_Autores.setFont(new Font("Muli", 4, 20));
         l_Autores.setForeground(cor.branco());
@@ -86,7 +87,7 @@ private JLabel lAll;
         l_Instituicoeseld.setForeground(cor.branco());
         add(l_Instituicoeseld);
 
-        l_Instituicoeseld = new JLabel ("Universidade Federal do Pampa");
+        l_Instituicoeseld = new JLabel ("resultado.getInstituicoes()");
         l_Instituicoeseld.setBounds(500, 330, 400, 30);
         l_Instituicoeseld.setFont(new Font("Muli", 4, 20));
         l_Instituicoeseld.setForeground(cor.branco());
@@ -99,7 +100,7 @@ private JLabel lAll;
         l_PalavrasC.setForeground(cor.branco());
         add(l_PalavrasC);
 
-        l_PalavrasC = new JLabel ("IA, Alexa, Cortana, Google Assistant");
+        l_PalavrasC = new JLabel ("resultado.getPalavrasChave()");
         l_PalavrasC.setBounds(1000, 330, 400, 30);
         l_PalavrasC.setFont(new Font("Muli", 4, 20));
         l_PalavrasC.setForeground(cor.branco());
@@ -112,7 +113,7 @@ private JLabel lAll;
         l_Resumo.setForeground(cor.branco());
         add(l_Resumo);
 
-        l_Resumo = new JLabel ("Matheus Kildere");
+        l_Resumo = new JLabel ("Resultado.getResumo()");
         l_Resumo.setBounds(50, 570, 400, 30);
         l_Resumo.setFont(new Font("Muli", 4, 20));
         l_Resumo.setForeground(cor.branco());
@@ -125,7 +126,7 @@ private JLabel lAll;
         l_Abstract.setForeground(cor.branco());
         add(l_Abstract);
 
-        l_Abstract = new JLabel ("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        l_Abstract = new JLabel ("resultado.getAbstract()");
         l_Abstract.setBounds(500, 570, 400, 30);
         l_Abstract.setFont(new Font("Muli", 4, 20));
         l_Abstract.setForeground(cor.branco());

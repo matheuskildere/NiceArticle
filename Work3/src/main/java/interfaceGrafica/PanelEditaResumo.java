@@ -87,7 +87,7 @@ public class PanelEditaResumo extends PanelResumo{
                             Situacao[] options = {Situacao.APROVADO,Situacao.SOB_AVALIACAO,Situacao.REPROVADO};
                             int x = JOptionPane.showOptionDialog(null, "Situacao da Submissao", "Informe", JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null, options, null);
                             submissao = new Resumo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC);
-                            listaSubmissao.(submissao);
+                           // listaSubmissao.(submissao);
                             clearAllText();
                         }
                     } catch (IllegalArgumentException e) {
