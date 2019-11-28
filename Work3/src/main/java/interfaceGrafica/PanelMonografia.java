@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import Enumeracao.Situacao;
 import Enumeracao.TipoMonografia;
+import Persistencia.Dados;
 import categoria.Monografia;
 
 /**
@@ -123,6 +124,7 @@ public class PanelMonografia extends PanelPrincipal{
                         int numeroPaginas = Integer.parseInt(j_NumeroPaginas.getText());
                         submissao = new Monografia(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes, vetor_PalavrasC, options2[y],j_Orientador.getText(), j_Curso.getText(),ano, numeroPaginas, j_Resumo.getText(), j_Abstract.getText());
                         listaSubmissao.incluir(submissao);
+                        persistenciaCSV = new Dados(submissao, "Monografia");
                         clearAllText();
                     }
                 } catch (IllegalArgumentException e) {

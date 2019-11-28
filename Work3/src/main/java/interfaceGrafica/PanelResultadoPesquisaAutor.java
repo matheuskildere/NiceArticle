@@ -130,4 +130,8 @@ private JLabel lAll;
         add(l_);
     }
 
+    protected void recebePesquisa(String pesquisa){
+
+    }
+
 }

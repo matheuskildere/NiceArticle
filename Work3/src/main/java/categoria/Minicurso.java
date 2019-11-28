@@ -8,11 +8,11 @@ import classes.SubmissaoApresentacao;
  */
 public class Minicurso extends SubmissaoApresentacao {
 
-    private String recursos[];
+    private String recursos;
     private String metodologia;
 
     public Minicurso(String tituloSubmissao, Situacao situacaoSubmissao, String autoresSubmissao[], String resumo,
-            String abstractt, int duracao, String recursos[], String metodologia) {
+            String abstractt, int duracao, String recursos, String metodologia) {
         super(tituloSubmissao, situacaoSubmissao, autoresSubmissao, 3, resumo, abstractt, duracao);
         this.recursos = recursos;
         this.metodologia = metodologia;
@@ -21,14 +21,14 @@ public class Minicurso extends SubmissaoApresentacao {
     /**
      * @return the recursos
      */
-    public String[] getRecursos() {
+    public String getRecursos() {
         return recursos;
     }
 
     /**
      * @param recursos the recursos to set
      */
-    public void setRecursos(String[] recursos) {
+    public void setRecursos(String recursos) {
         this.recursos = recursos;
     }
 

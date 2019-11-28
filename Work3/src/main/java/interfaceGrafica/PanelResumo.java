@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Enumeracao.Situacao;
+import Persistencia.Dados;
 import categoria.Resumo;
 
 /**
@@ -168,9 +169,7 @@ public class PanelResumo extends PanelPrincipal {
                             submissao = new Resumo(j_Titulo.getText(), options[x], vetor_Autores, vetor_Instituicoes,
                                     vetor_PalavrasC);
                             listaSubmissao.incluir(submissao);
-                            JOptionPane.showMessageDialog(null,
-                                    "O resumo " + j_Titulo.getText() + " foi adicionado com sucesso !");
-
+                            persistenciaCSV = new Dados(submissao, "Resumo");
                             clearAllText();
 
                         }

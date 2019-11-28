@@ -249,6 +249,7 @@ public class PanelInicial extends PanelPrincipal {
     }
 
     private void configuraResultado(String titulo, String autor, String situacao) {
+        System.out.println("configurando");
         settingsLabels(init_Titulo, titulo, 1, panelResultados);
         settingsLabels(init_Autor, autor, 2, panelResultados);
         settingsLabels(init_Categoria, situacao, 3, panelResultados);

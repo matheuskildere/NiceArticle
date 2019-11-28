@@ -191,6 +191,7 @@ public class Janela extends PanelPrincipal implements ActionListener {
                 panelPalestra.setVisible(false);
                 panelResultadoPesquisaAutor.setVisible(false);
                 panelResultadoPesquisaSubmissao.setVisible(true);
+                panelResultadoPesquisaSubmissao.recebePesquisa(termo);
 
             } else if (listaSubmissao.consultarAutor(termo).size() != 0) {
                 panel.setVisible(false);
@@ -202,6 +203,7 @@ public class Janela extends PanelPrincipal implements ActionListener {
                 panelPalestra.setVisible(false);
                 panelResultadoPesquisaSubmissao.setVisible(false);
                 panelResultadoPesquisaAutor.setVisible(true);
+                panelResultadoPesquisaAutor.recebePesquisa(termo);
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum resultado foi encontrado !");
             }
